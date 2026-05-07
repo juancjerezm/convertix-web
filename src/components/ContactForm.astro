@@ -3,93 +3,24 @@
     <p class="section-label">Contacto</p>
     <h2 class="section-title">Hablemos de tu proyecto</h2>
     <p class="section-subtitle">
-      ¿Tenés una idea en mente? Respondo en menos de 24 horas.
+      Escribime por WhatsApp y te respondo en menos de 2 horas.
     </p>
 
-    <div class="contact-grid">
-      <!-- WhatsApp CTA -->
-      <div class="contact-whatsapp">
-        <div class="whatsapp-card">
-          <div class="whatsapp-icon">💬</div>
-          <h3>¿Preferís hablar directo?</h3>
-          <p>
-            Escribime por WhatsApp y te respondo al toque. Sin formularios,
-            sin vueltas.
-          </p>
-          <a
-            href="https://wa.me/573152498547"
-            class="btn btn-primary"
-            target="_blank"
-            rel="noopener"
-          >
-            Escribir por WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <!-- Contact Form -->
-      <div class="contact-form-wrapper">
-        <form
-          class="contact-form"
-          name="contact"
-          method="POST"
-          netlify
-          data-netlify="true"
-          action="/thanks"
+    <div class="whatsapp-only">
+      <div class="whatsapp-card">
+        <div class="whatsapp-icon">💬</div>
+        <h3>Escribime ahora</h3>
+        <p>
+          Sin formularios, sin vueltas. Hablás directo conmigo.
+        </p>
+        <a
+          href="https://wa.me/573152498547"
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener"
         >
-          <!-- Honeypot field for spam protection -->
-          <p hidden>
-            <label>
-              No llenes esto si eres humano:
-              <input name="bot-field" />
-            </label>
-          </p>
-          <input type="hidden" name="form-name" value="contact" />
-
-          <div class="form-field">
-            <label for="name" class="form-label">Nombre</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-input"
-              placeholder="Tu nombre"
-              required
-            />
-          </div>
-
-          <div class="form-field">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-input"
-              placeholder="tu@email.com"
-              required
-            />
-          </div>
-
-          <div class="form-field">
-            <label for="message" class="form-label">Mensaje</label>
-            <textarea
-              id="message"
-              name="message"
-              class="form-input form-textarea"
-              placeholder="Contame de qué se trata tu proyecto..."
-              rows="5"
-              required
-            ></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-submit">
-            Enviar mensaje &rarr;
-          </button>
-
-          <p class="form-success" hidden>
-            ¡Gracias! Te responderé en menos de 24 horas.
-          </p>
-        </form>
+          💬 Abrir WhatsApp
+        </a>
       </div>
     </div>
   </div>
@@ -104,35 +35,26 @@
     margin: 0 auto 64px;
   }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    text-align: left;
-    align-items: start;
-  }
-
-  /* WhatsApp card */
-  .contact-whatsapp {
-    position: sticky;
-    top: 120px;
+  .whatsapp-only {
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .whatsapp-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: calc(var(--radius) + 8px);
-    padding: 48px 40px;
+    padding: 56px 48px;
     text-align: center;
   }
 
   .whatsapp-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 3.5rem;
+    margin-bottom: 24px;
   }
 
   .whatsapp-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 12px;
   }
@@ -141,83 +63,17 @@
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.7;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
 
-  /* Form */
-  .contact-form-wrapper {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) + 8px);
-    padding: 48px 40px;
-  }
-
-  .form-field {
-    margin-bottom: 24px;
-    text-align: left;
-  }
-
-  .form-label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-muted);
-  }
-
-  .form-input {
-    width: 100%;
-    padding: 14px 16px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--text);
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: border-color var(--transition);
-    outline: none;
-  }
-
-  .form-input:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
-  }
-
-  .form-input::placeholder {
-    color: rgba(160, 160, 176, 0.5);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .form-submit {
-    width: 100%;
-    justify-content: center;
+  .whatsapp-card .btn {
     font-size: 1rem;
-    padding: 16px 32px;
-  }
-
-  .form-success {
-    color: #22c55e;
-    font-weight: 600;
-    margin-top: 16px;
-    text-align: center;
+    padding: 16px 40px;
   }
 
   @media (max-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-whatsapp {
-      position: static;
-    }
-
-    .whatsapp-card,
-    .contact-form-wrapper {
-      padding: 32px 24px;
+    .whatsapp-card {
+      padding: 40px 24px;
     }
   }
 </style>
