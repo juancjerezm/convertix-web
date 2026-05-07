@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
-const DEMOS = ['landing', 'negocio-local', 'profesional', 'tienda-online'];
+const DEMOS = ['landing', 'negocio-local', 'profesional', 'blog'];
 const BASE_URL = 'http://localhost:4321';
 const OUTPUT_DIR = path.join(ROOT, 'public', 'templates');
 const VIEWPORT = { width: 1600, height: 900 };

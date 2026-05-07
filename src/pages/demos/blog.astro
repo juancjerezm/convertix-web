@@ -1,0 +1,524 @@
+---
+// Blog Demo Page — Clean editorial standalone, no BaseLayout
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENFOQUE — Blog editorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --charcoal: #1a1a2e;
+      --teal: #0d9488;
+      --teal-light: rgba(13, 148, 136, 0.1);
+      --grey-light: #f8f9fa;
+      --grey-border: #e9ecef;
+      --text-muted: #6b7280;
+      --radius: 12px;
+      --max-width: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .volver-link {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: rgba(30, 41, 59, 0.7);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .volver-link:hover { background: rgba(30, 41, 59, 0.9); }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      padding: 32px 24px 0;
+      text-align: center;
+    }
+    .site-header .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .site-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 900;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+    }
+    .site-title span { color: var(--teal); }
+    .site-subtitle {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+    .site-nav {
+      margin-top: 24px;
+      padding: 16px 0;
+      border-top: 1px solid var(--grey-border);
+      border-bottom: 1px solid var(--grey-border);
+    }
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .site-nav a {
+      color: var(--charcoal);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.2px;
+    }
+    .site-nav a:hover { color: var(--teal); }
+    .site-nav a.active { color: var(--teal); font-weight: 600; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 80px 24px;
+      background: var(--teal-light);
+      text-align: center;
+    }
+    .hero .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .hero p {
+      font-size: clamp(1rem, 1.5vw, 1.1875rem);
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 34px;
+      background: var(--teal);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: #0f766e; transform: translateY(-2px); }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 80px 24px; }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--charcoal);
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    /* ─── ARTICLE GRID ─── */
+    .articles { background: var(--white); }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .article-card {
+      background: var(--grey-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .article-card:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      transform: translateY(-4px);
+    }
+    .article-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .article-image.cat-tecnologia { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+    .article-image.cat-productividad { background: linear-gradient(135deg, #0d9488, #06b6d4); }
+    .article-image.cat-lifestyle { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+    .article-image.cat-cultura { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+    .article-image.cat-negocios { background: linear-gradient(135deg, #1e40af, #0d9488); }
+    .article-image.cat-ciencia { background: linear-gradient(135deg, #4f46e5, #06b6d4); }
+
+    .article-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .article-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(13, 148, 136, 0.1);
+      border-radius: 100px;
+      margin-bottom: 12px;
+      align-self: flex-start;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .article-card h3 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .article-meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .article-excerpt {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .article-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      transition: opacity 0.2s;
+      align-self: flex-start;
+    }
+    .article-link:hover { opacity: 0.7; }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter {
+      background: var(--teal-light);
+      text-align: center;
+    }
+    .newsletter .container {
+      max-width: 560px;
+    }
+    .newsletter h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+    .newsletter p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    .newsletter-form input::placeholder { color: #9ca3af; }
+    .newsletter-form button {
+      padding: 14px 28px;
+      background: var(--teal);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: #0f766e; }
+
+    /* ─── FOOTER ─── */
+    .demo-footer {
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .demo-footer .footer-brand {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.125rem;
+      font-weight: 900;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .demo-footer .footer-brand span { color: var(--teal); }
+    .demo-footer .copyright {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .demo-footer a {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .demo-footer a:hover { opacity: 0.7; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .site-nav ul { gap: 20px; }
+      .hero { padding: 60px 20px; }
+
+      .articles-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form button { width: 100%; }
+
+      section { padding: 60px 20px; }
+      .section-subtitle { margin-bottom: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .site-header { padding: 24px 16px 0; }
+      .site-nav ul { gap: 14px; }
+      .site-nav a { font-size: 0.8125rem; }
+
+      .articles-grid { grid-template-columns: 1fr; gap: 20px; }
+
+      .hero { padding: 48px 16px; }
+      .demo-footer { padding: 28px 16px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Volver link -->
+  <a href="/" class="volver-link">← Volver a Convertix</a>
+
+  <!-- ─── HEADER ─── -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-title">ENFOQUE<span>.</span></div>
+      <p class="site-subtitle">Historias que importan</p>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#">Artículos</a></li>
+          <li><a href="#">Sobre mí</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="container">
+      <h1>Tu voz merece ser leída</h1>
+      <p>
+        Exploramos tecnología, productividad y cultura con una mirada crítica y
+        humana. Artículos que invitan a pensar, no solo a consumir.
+      </p>
+      <a href="#" class="hero-cta">Suscribirme</a>
+    </div>
+  </section>
+
+  <!-- ─── ARTICLES ─── -->
+  <section class="articles" id="articulos">
+    <div class="container">
+      <h2 class="section-title">Artículos recientes</h2>
+      <p class="section-subtitle">
+        Análisis, reflexiones y guías escritas por personas reales, para personas reales.
+      </p>
+
+      <div class="articles-grid">
+
+        <article class="article-card">
+          <div class="article-image cat-tecnologia">IA</div>
+          <div class="article-body">
+            <span class="article-tag">Tecnología</span>
+            <h3>El dilema de la inteligencia artificial: ¿herramienta o reemplazo?</h3>
+            <p class="article-meta">15 de abril, 2026 &middot; 8 min de lectura</p>
+            <p class="article-excerpt">
+              Mientras las empresas corren por adoptar IA, pocas se detienen a preguntar qué pasa con las personas que quedan atrás. Una mirada honesta al presente y futuro del trabajo.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-image cat-productividad">⏰</div>
+          <div class="article-body">
+            <span class="article-tag">Productividad</span>
+            <h3>Dejé de usar todas las apps de productividad (y soy más productivo)</h3>
+            <p class="article-meta">8 de abril, 2026 &middot; 6 min de lectura</p>
+            <p class="article-excerpt">
+              El síndrome de la herramienta perfecta nos hace perder el foco. Recuperar el lápiz y el papel fue la decisión más contraintuitiva y efectiva que tomé este año.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-image cat-lifestyle">🌿</div>
+          <div class="article-body">
+            <span class="article-tag">Lifestyle</span>
+            <h3>Vivir con menos: lo que aprendí al reducir mis cosas a 50 objetos</h3>
+            <p class="article-meta">1 de abril, 2026 &middot; 10 min de lectura</p>
+            <p class="article-excerpt">
+              No se trata de privación, sino de intencionalidad. Cada objeto que conservé tiene un propósito, una historia o una función esencial. El resto era solo ruido.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-image cat-cultura">🎭</div>
+          <div class="article-body">
+            <span class="article-tag">Cultura</span>
+            <h3>El renacimiento de los espacios físicos en la era digital</h3>
+            <p class="article-meta">25 de marzo, 2026 &middot; 7 min de lectura</p>
+            <p class="article-excerpt">
+              Librerías, clubes de lectura y talleres presenciales vuelven con fuerza. La paradoja es que la saturación digital nos empujó a buscar lo que no se puede descargar: el encuentro real.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-image cat-negocios">📈</div>
+          <div class="article-body">
+            <span class="article-tag">Negocios</span>
+            <h3>Por qué las startups que crecen lento terminan ganando</h3>
+            <p class="article-meta">18 de marzo, 2026 &middot; 9 min de lectura</p>
+            <p class="article-excerpt">
+              El growth a toda costa tiene caducidad. Cada vez más founders optan por un crecimiento sostenible, con equipos chicos y clientes que realmente entienden su producto.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-image cat-ciencia">🔬</div>
+          <div class="article-body">
+            <span class="article-tag">Ciencia</span>
+            <h3>Neuroplasticidad: cómo el cerebro cambia cuando aprendés a programar</h3>
+            <p class="article-meta">10 de marzo, 2026 &middot; 12 min de lectura</p>
+            <p class="article-excerpt">
+              Estudios recientes muestran que aprender código no solo enseña lógica: literalmente reconecta el cerebro, mejorando la memoria de trabajo y la capacidad de abstracción.
+            </p>
+            <a href="#" class="article-link">Leer más →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NEWSLETTER ─── -->
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <h2>Recibí los mejores artículos</h2>
+      <p>
+        Un correo por semana con lo más destacado. Sin spam, sin ruido, solo contenido que suma.
+      </p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="tu@correo.com" aria-label="Tu correo electrónico" />
+        <button type="button">Recibir artículos</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="demo-footer">
+    <div class="container">
+      <div class="footer-brand">ENFOQUE<span>.</span></div>
+      <p class="copyright">&copy; 2026 ENFOQUE. Todos los derechos reservados.</p>
+      <a href="/">← Volver a Convertix</a>
+    </div>
+  </footer>
+
+</body>
+</html>

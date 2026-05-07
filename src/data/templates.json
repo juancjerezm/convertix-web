@@ -27,12 +27,12 @@
     "demoUrl": "/demos/profesional"
   },
   {
-    "id": "ecommerce",
-    "name": "Tienda Online",
-    "description": "Catálogo de productos, carrito, pagos integrados. Ideal para empezar a vender.",
-    "icon": "🛍️",
+    "id": "blog",
+    "name": "Blog Profesional",
+    "description": "Para creadores de contenido, escritores, marketers. Blog con artículos, categorías y newsletter.",
+    "icon": "📝",
     "price": "$350.000",
-    "image": "/templates/tienda-online.webp",
-    "demoUrl": "/demos/tienda-online"
+    "image": "/templates/blog.webp",
+    "demoUrl": "/demos/blog"
   }
 ]
