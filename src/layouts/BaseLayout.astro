@@ -2,6 +2,7 @@
 import SEO from '../components/SEO.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import DecorativeBlobs from '../components/DecorativeBlobs.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -35,6 +36,8 @@ const {
     <SEO title={title} description={description} ogImage={ogImage} url={url} />
   </head>
   <body>
+    <!-- Decorative background -->
+    <DecorativeBlobs />
     <!-- Grain texture filter -->
     <svg style="display:none">
       <filter id="grain">
