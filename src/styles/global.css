@@ -136,12 +136,12 @@ img {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
 }
 
 .logo-icon {
-  width: 57px;
-  height: 57px;
+  width: 64px;
+  height: 64px;
   display: block;
   flex-shrink: 0;
 }
