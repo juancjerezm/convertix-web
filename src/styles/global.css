@@ -136,13 +136,28 @@ img {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.logo-img {
-  height: 42px;
-  width: auto;
+.logo-icon {
+  width: 52px;
+  height: 52px;
   display: block;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.logo-text-web {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-left: 4px;
 }
 
 .nav-links {
