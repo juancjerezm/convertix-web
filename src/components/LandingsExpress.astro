@@ -18,17 +18,16 @@ import templates from '../data/templates.json';
             <div class="template-image">
               <img src={template.image} alt={template.name} class="template-preview" loading="lazy" />
             </div>
-            <div class="template-price">{template.price}</div>
             <h3 class="template-name">{template.name}</h3>
             <p class="template-description">{template.description}</p>
             <div class="template-actions">
               <a
-                href={`https://wa.me/573152498547?text=${encodeURIComponent(`¡Hola! Quiero la plantilla ${template.name} para mi negocio.`)}`}
+                href={`https://wa.me/573152498547?text=${encodeURIComponent(`¡Hola! Me interesa la plantilla ${template.name}. ¿Podés pasarme más información?`)}`}
                 class="btn btn-primary template-cta"
                 target="_blank"
                 rel="noopener"
               >
-                Quiero esta &rarr;
+                Solicitar cotización &rarr;
               </a>
               <a href={template.demoUrl} class="btn btn-outline template-demo-btn">
                 Ver demo &rarr;
@@ -99,10 +98,10 @@ import templates from '../data/templates.json';
 
   .template-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     background: var(--bg-primary);
     border: 1px solid var(--border);
   }
@@ -112,18 +111,6 @@ import templates from '../data/templates.json';
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .template-price {
-    display: inline-block;
-    background: var(--gradient);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
   }
 
   .template-name {

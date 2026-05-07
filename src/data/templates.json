@@ -9,22 +9,22 @@
     "demoUrl": "/demos/landing"
   },
   {
-    "id": "negocio-local",
-    "name": "Negocio Local",
-    "description": "Para restaurantes, tiendas, servicios locales. Secciones: inicio, servicios, ubicación, contacto.",
-    "icon": "🏪",
-    "price": "$280.000",
-    "image": "/templates/negocio-local.webp",
-    "demoUrl": "/demos/negocio-local"
-  },
-  {
     "id": "profesional",
     "name": "Profesional",
     "description": "Para abogados, contadores, consultores. Perfil, servicios, testimonios, agenda.",
     "icon": "💼",
-    "price": "$320.000",
+    "price": "$280.000",
     "image": "/templates/profesional.webp",
     "demoUrl": "/demos/profesional"
+  },
+  {
+    "id": "negocio-local",
+    "name": "Negocio Local",
+    "description": "Para restaurantes, tiendas, servicios locales. Secciones: inicio, servicios, ubicación, contacto.",
+    "icon": "🏪",
+    "price": "$320.000",
+    "image": "/templates/negocio-local.webp",
+    "demoUrl": "/demos/negocio-local"
   },
   {
     "id": "blog",
