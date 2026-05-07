@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://convertixweb.com/sitemap-index.xml

@@ -1,0 +1,57 @@
+---
+// Navbar component — fixed, scroll-aware, with hamburger toggle
+---
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="/" class="logo">
+      <span class="logo-letter">C</span>
+      CONVERTIX
+      <span class="logo-text-web">WEB</span>
+    </a>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="/#servicios">Servicios</a></li>
+        <li><a href="/#proceso">Proceso</a></li>
+        <li><a href="/#contactame">Contacto</a></li>
+      </ul>
+      <a href="/#contactame" class="btn btn-primary nav-cta">Hablemos</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+
+  // Scroll effect
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  }
+
+  // Hamburger toggle
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+
+    // Close menu on link click
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+</script>

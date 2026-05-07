@@ -1,0 +1,32 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  url?: string;
+}
+
+const { title, description, ogImage, url } = Astro.props;
+const defaultOgImage = ogImage || '/og-image.svg';
+const siteUrl = url || 'https://convertixweb.com';
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- Canonical -->
+<link rel="canonical" href={siteUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={defaultOgImage.startsWith('http') ? defaultOgImage : siteUrl + defaultOgImage} />
+<meta property="og:url" content={siteUrl} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={defaultOgImage.startsWith('http') ? defaultOgImage : siteUrl + defaultOgImage} />

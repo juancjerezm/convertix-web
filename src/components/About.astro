@@ -1,0 +1,84 @@
+<section class="about reveal" id="sobre-mi">
+  <div class="container">
+    <p class="section-label">Sobre mí</p>
+    <h2 class="section-title">Convertix Web</h2>
+
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          Soy <strong>Juan Carlos</strong>, el que está detrás de Convertix. No tengo 50 empleados ni oficina
+          en Miami. Tengo código limpio, plazos reales y algo que las agencias
+          grandes no te dan: <strong>atención directa conmigo.</strong>
+        </p>
+        <p>
+          Si tenés un negocio y necesitás presencia web que funcione, hablame
+          hoy. Mañana ya estamos trabajando.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-number">7 días</span>
+          <span class="stat-label">Garantía total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">&lt;2h</span>
+          <span class="stat-label">Respuesta promedio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    text-align: center;
+    background: var(--bg-secondary);
+  }
+
+  .about-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .about-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .about-stats {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>

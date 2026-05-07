@@ -1,0 +1,130 @@
+<section class="portfolio reveal" id="portfolio">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Proyectos que <span class="highlight">hablan</span></h2>
+    <p class="section-subtitle">
+      Cada proyecto es único. Acá uno de los trabajos más recientes.
+    </p>
+
+    <div class="project-card">
+      <div class="project-screenshot">
+        <img src="/portfolio/autos-jc.webp" alt="Autos JC — Galería de Vehículos" class="screenshot-img" loading="lazy" width="800" height="693" />
+      </div>
+      <div class="project-info">
+        <h3 class="project-name">Autos JC — Galería de Vehículos</h3>
+        <p class="project-description">
+          Plataforma completa para concesionaria con búsqueda avanzada, galería
+          de imágenes, panel de detalle y gestión de inventario. React + Vite +
+          backend personalizado.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">CSS</span>
+        </div>
+        <a href="https://autosjc.com/" class="btn btn-outline project-link" target="_blank" rel="noopener">
+          Ver proyecto &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    text-align: center;
+  }
+
+  .portfolio .section-subtitle {
+    margin: 0 auto 64px;
+  }
+
+  .portfolio .highlight {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    text-align: left;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 8px);
+    overflow: hidden;
+  }
+
+  .project-screenshot {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-right: 1px solid var(--border);
+  }
+
+  .project-info {
+    padding: 40px 40px 40px 0;
+  }
+
+  .project-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .project-description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .tech-tag {
+    background: rgba(0, 112, 243, 0.1);
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 112, 243, 0.2);
+  }
+
+  .project-link {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .project-card {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .screenshot-img {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      min-height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 32px 24px;
+    }
+  }
+</style>
