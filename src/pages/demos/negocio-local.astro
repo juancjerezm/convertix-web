@@ -1,0 +1,499 @@
+---
+// Negocio Local Demo — Restaurant/Café standalone page
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Mesa — Cocina de autor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #fef7e7;
+      --olive: #4a6741;
+      --olive-dark: #3a5433;
+      --terracotta: #c67b5c;
+      --terracotta-light: #d49276;
+      --brown: #2d1810;
+      --brown-light: #5c3a2e;
+      --white: #ffffff;
+      --radius: 10px;
+      --max-width: 1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--brown);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+    }
+
+    .volver-link {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: rgba(30, 41, 59, 0.7);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .volver-link:hover { background: rgba(30, 41, 59, 0.9); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--olive);
+      color: var(--white);
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+      margin-bottom: 36px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--terracotta-light); transform: translateY(-2px); }
+
+    .hero-decoration {
+      margin-top: 48px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .hero-decoration span { display: flex; align-items: center; gap: 6px; }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 80px 24px; }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--brown);
+    }
+    .section-title-ornament {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--terracotta);
+      margin: 0 auto 48px;
+      border-radius: 2px;
+    }
+
+    /* ─── MENU ─── */
+    .menu { background: var(--white); }
+    .menu-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .menu-category h3 {
+      font-size: 1.5rem;
+      color: var(--olive);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cream);
+    }
+    .menu-item {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .menu-item-info { flex: 1; }
+    .menu-item-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+    .menu-item-info p {
+      font-size: 0.875rem;
+      color: var(--brown-light);
+      line-height: 1.6;
+    }
+    .menu-item-price {
+      font-weight: 600;
+      color: var(--terracotta);
+      white-space: nowrap;
+      font-size: 1.0625rem;
+    }
+
+    /* ─── LOCATION ─── */
+    .location {
+      text-align: center;
+      background: var(--cream);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .location-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(74, 103, 65, 0.15);
+    }
+    .location-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--olive);
+      margin-bottom: 16px;
+    }
+    .location-card p {
+      font-size: 0.9375rem;
+      color: var(--brown-light);
+      line-height: 1.8;
+    }
+    .location-card .label {
+      font-weight: 600;
+      color: var(--brown);
+    }
+    .location-map {
+      width: 100%;
+      height: 200px;
+      background: #e8e0d0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown-light);
+      font-size: 0.875rem;
+      margin-bottom: 16px;
+    }
+
+    .location-hours {
+      display: grid;
+      gap: 8px;
+    }
+    .location-hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9375rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(74, 103, 65, 0.1);
+    }
+    .location-hours-row:last-child { border-bottom: none; }
+    .location-hours-row .day { color: var(--brown); }
+    .location-hours-row .time { color: var(--brown-light); font-weight: 500; }
+    .location-hours-row.closed .time { color: var(--terracotta); }
+
+    /* ─── RESERVA CTA ─── */
+    .reserva-cta-section {
+      text-align: center;
+      background: var(--olive);
+      color: var(--white);
+      padding: 64px 24px;
+    }
+    .reserva-cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      margin-bottom: 12px;
+    }
+    .reserva-cta-section p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .reserva-cta-section .hero-cta { background: var(--terracotta); }
+    .reserva-cta-section .hero-cta:hover { background: var(--terracotta-light); }
+
+    /* ─── FOOTER ─── */
+    .demo-footer {
+      padding: 32px 24px;
+      text-align: center;
+      background: var(--cream);
+    }
+    .demo-footer a {
+      color: var(--olive);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .demo-footer a:hover { opacity: 0.7; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero { padding: 100px 20px 60px; }
+      .hero-decoration { gap: 20px; font-size: 0.8125rem; }
+
+      .menu-categories { grid-template-columns: 1fr; gap: 32px; }
+
+      .location-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      section { padding: 56px 20px; }
+      .section-title-ornament { margin-bottom: 32px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .menu-categories { grid-template-columns: repeat(2, 1fr); }
+      .menu-category:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Volver link -->
+  <a href="/" class="volver-link">← Volver a Convertix</a>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-sub">Cocina de autor &bull; Desde 2018</p>
+      <h1>La Mesa</h1>
+      <p class="hero-tagline">
+        Donde cada plato cuenta una historia. Productos frescos, temporada local y la pasión de quienes aman cocinar.
+      </p>
+      <a href="#" class="hero-cta">Reservar mesa</a>
+      <div class="hero-decoration">
+        <span>🍷 Carta de vinos</span>
+        <span>🌿 Producto local</span>
+        <span>🅿️ Estacionamiento</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MENÚ ─── -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <h2 class="section-title">Nuestro menú</h2>
+      <span class="section-title-ornament"></span>
+
+      <div class="menu-categories">
+        <!-- Entradas -->
+        <div class="menu-category">
+          <h3>Entradas</h3>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Carpaccio de res</h4>
+              <p>Láminas finas de res angus, parmesano, rúcula, mostaza antigua y reduction de balsámico</p>
+            </div>
+            <span class="menu-item-price">$38.900</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Bruschetta tricolor</h4>
+              <p>Pan artesanal, tomate cherry, albahaca fresca, burrata, reducción de aceto</p>
+            </div>
+            <span class="menu-item-price">$28.500</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Crema de calabaza</h4>
+              <p>Calabaza asada, jengibre, leche de coco, semillas de sésamo tostadas y croutons</p>
+            </div>
+            <span class="menu-item-price">$24.900</span>
+          </div>
+        </div>
+
+        <!-- Platos -->
+        <div class="menu-category">
+          <h3>Platos</h3>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Salmón glaseado</h4>
+              <p>Salmón fresco con glaseado de miel y soja, puré de batata, espárragos salteados</p>
+            </div>
+            <span class="menu-item-price">$52.900</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Risotto de hongos</h4>
+              <p>Arroz arbóreo, mix de hongos silvestres, parmesano añejo, trufa negra rallada</p>
+            </div>
+            <span class="menu-item-price">$45.900</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Bife de chorizo</h4>
+              <p>350g de bife angus grillado, chimichurri casero, papas a la crema, pimientos asados</p>
+            </div>
+            <span class="menu-item-price">$62.900</span>
+          </div>
+        </div>
+
+        <!-- Postres -->
+        <div class="menu-category">
+          <h3>Postres</h3>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Panacotta de maracuyá</h4>
+              <p>Crema italiana, coulis de maracuyá, fresas frescas y hojas de menta</p>
+            </div>
+            <span class="menu-item-price">$22.500</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Brownie de chocolate</h4>
+              <p>Chocolate 70% cacao, nueces caramelizadas, helado de vainilla artesanal</p>
+            </div>
+            <span class="menu-item-price">$24.900</span>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-info">
+              <h4>Cheesecake de limón</h4>
+              <p>Base de galleta, queso crema, curd de limón, merengue italiano flameado</p>
+            </div>
+            <span class="menu-item-price">$23.900</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LOCATION / HOURS ─── -->
+  <section class="location" id="ubicacion">
+    <div class="container">
+      <h2 class="section-title">Encontranos</h2>
+      <span class="section-title-ornament"></span>
+
+      <div class="location-grid">
+        <div class="location-card">
+          <h3>📍 Dirección</h3>
+          <div class="location-map">
+            Av. siempre viva 742,<br />Palermo, CABA
+          </div>
+          <p>
+            <span class="label">Teléfono:</span> (011) 5555-0123<br />
+            <span class="label">Email:</span> hola@lamesa.com.ar<br />
+            <span class="label">Instagram:</span> @lamesacaba
+          </p>
+        </div>
+
+        <div class="location-card">
+          <h3>🕐 Horarios</h3>
+          <div class="location-hours">
+            <div class="location-hours-row">
+              <span class="day">Lunes a viernes</span>
+              <span class="time">12:00 — 23:00</span>
+            </div>
+            <div class="location-hours-row">
+              <span class="day">Sábados</span>
+              <span class="time">12:00 — 23:00</span>
+            </div>
+            <div class="location-hours-row closed">
+              <span class="day">Domingos</span>
+              <span class="time">12:00 — 18:00</span>
+            </div>
+          </div>
+          <p style="margin-top:16px; font-size:0.875rem; color:var(--brown-light);">
+            ⚡ Happy hour: Lun–Vie de 18:00 a 20:00 (2x1 en copas de vino)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RESERVAS ─── -->
+  <section class="reserva-cta-section">
+    <h2>¿Listo para venir?</h2>
+    <p>
+      Reservá tu mesa y disfrutá de una experiencia gastronómica única.<br />
+      Grupos de hasta 10 personas.
+    </p>
+    <a href="#" class="hero-cta">Reservar mesa</a>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="demo-footer">
+    <a href="/">← Volver a Convertix</a>
+  </footer>
+
+</body>
+</html>

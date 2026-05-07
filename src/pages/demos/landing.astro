@@ -1,0 +1,568 @@
+---
+// SaaS/Startup Landing Demo Page — standalone, no BaseLayout
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StartupPro — Tu producto merece ser visto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style is:global>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --grey-light: #f8fafc;
+      --grey-border: #e2e8f0;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --radius: 12px;
+      --max-width: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .volver-link {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: rgba(30, 41, 59, 0.7);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .volver-link:hover { background: rgba(30, 41, 59, 0.9); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(135deg, var(--white) 0%, var(--grey-light) 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--blue);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-dark);
+      max-width: 800px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--blue); }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--blue-dark); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .hero-stat span {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 80px 24px; }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--grey-light); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      border: 1px solid var(--grey-border);
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      font-size: 2.25rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--grey-border);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      text-align: center;
+      transition: box-shadow 0.25s, transform 0.2s;
+    }
+    .pricing-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px var(--blue);
+      transform: scale(1.03);
+      position: relative;
+    }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+    .pricing-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .pricing-card h3 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .pricing-price small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .pricing-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .pricing-features li {
+      padding: 8px 0;
+      font-size: 0.9375rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before { content: "✓"; color: var(--blue); font-weight: 700; }
+
+    .pricing-cta {
+      display: inline-block;
+      width: 100%;
+      padding: 14px;
+      background: var(--grey-light);
+      color: var(--text-dark);
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pricing-cta:hover { background: var(--grey-border); }
+    .pricing-card.featured .pricing-cta {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .pricing-card.featured .pricing-cta:hover { background: var(--blue-dark); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--grey-light); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      border: 1px solid var(--grey-border);
+    }
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .testimonial-card blockquote {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+    .testimonial-author-info strong {
+      display: block;
+      font-size: 0.9375rem;
+      font-weight: 600;
+    }
+    .testimonial-author-info span {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── FOOTER ─── */
+    .demo-footer {
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .demo-footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .demo-footer a:hover { opacity: 0.7; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero { min-height: 70vh; padding: 100px 20px 60px; }
+      .hero-stats { gap: 28px; margin-top: 40px; }
+      .hero-stat strong { font-size: 1.5rem; }
+
+      .features-grid,
+      .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-4px); }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      section { padding: 60px 20px; }
+      .section-subtitle { margin-bottom: 36px; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .features-grid,
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-card:last-child { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Volver link -->
+  <a href="/" class="volver-link">← Volver a Convertix</a>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <span class="hero-badge">🚀 Lanzamiento 2026</span>
+    <h1>Tu producto <span>merece ser visto</span></h1>
+    <p>
+      Convertí visitantes en clientes con una landing page profesional en minutos.
+      Sin código, sin diseñador, sin excusas.
+    </p>
+    <a href="#" class="hero-cta">Comenzar ahora →</a>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>12K+</strong>
+        <span>Clientes activos</span>
+      </div>
+      <div class="hero-stat">
+        <strong>98%</strong>
+        <span>Satisfacción</span>
+      </div>
+      <div class="hero-stat">
+        <strong>4.9★</strong>
+        <span>Calificación promedio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ─── -->
+  <section class="features" id="features">
+    <div class="container">
+      <span class="section-label">Características</span>
+      <h2 class="section-title">Todo lo que necesitás para crecer</h2>
+      <p class="section-subtitle">
+        Desde el diseño hasta la conversión, te cubrimos con herramientas pensadas para resultados reales.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3>Diseño inteligente</h3>
+          <p>
+            Plantillas optimizadas que se adaptan a tu marca con colores, tipografía y estilos que convierten. Sin tocar una línea de código.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Analítica integrada</h3>
+          <p>
+            Dashboard en tiempo real con métricas de conversión, tráfico por fuente y mapas de calor. Sabé qué funciona y qué mejorar.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Velocidad garantizada</h3>
+          <p>
+            Hosting edge global con CDN. Tu página carga en menos de 1 segundo en cualquier dispositivo, en cualquier parte del mundo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <span class="section-label">Precios</span>
+      <h2 class="section-title">Un plan para cada etapa</h2>
+      <p class="section-subtitle">
+        Empezá gratis y escalá cuando lo necesites. Sin contratos, sin sorpresas.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Básico</h3>
+          <div class="pricing-price">$29 <small>/mes</small></div>
+          <p class="pricing-desc">Perfecto para empezar</p>
+          <ul class="pricing-features">
+            <li>1 landing page</li>
+            <li>Plantillas estándar</li>
+            <li>Formulario de contacto</li>
+            <li>Analítica básica</li>
+            <li>Hosting incluido</li>
+          </ul>
+          <a href="#" class="pricing-cta">Elegir plan</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Más popular</span>
+          <h3>Pro</h3>
+          <div class="pricing-price">$79 <small>/mes</small></div>
+          <p class="pricing-desc">Para negocios en serio</p>
+          <ul class="pricing-features">
+            <li>5 landing pages</li>
+            <li>Plantillas premium</li>
+            <li>Integración CRM</li>
+            <li>Analítica avanzada + heatmaps</li>
+            <li>Tests A/B</li>
+            <li>Prioridad en soporte</li>
+          </ul>
+          <a href="#" class="pricing-cta">Elegir plan</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Empresarial</h3>
+          <div class="pricing-price">$199 <small>/mes</small></div>
+          <p class="pricing-desc">A escala enterprise</p>
+          <ul class="pricing-features">
+            <li>Landings ilimitadas</li>
+            <li>Todas las plantillas</li>
+            <li>API personalizada</li>
+            <li>Dashboard multi-equipo</li>
+            <li>SLA 99.9%</li>
+            <li>Gerente de cuenta dedicado</li>
+            <li>Capacitación del equipo</li>
+          </ul>
+          <a href="#" class="pricing-cta">Elegir plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <span class="section-label">Testimonios</span>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-subtitle">
+        Más de 12 mil empresas confían en nosotros para sus landing pages.
+      </p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>
+            "Pasamos de tener una web estática a una landing que nos genera leads todos los días. La migración fue increíblemente sencilla y el soporte siempre estuvo ahí cuando lo necesitamos."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MC</div>
+            <div class="testimonial-author-info">
+              <strong>María Cervantes</strong>
+              <span>CEO — Urban Café</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>
+            "Probamos tres herramientas antes de llegar acá. Ninguna nos dio la combinación de velocidad, diseño y facilidad de uso que necesitábamos. Hoy tenemos 3 landings activas y creciendo."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PL</div>
+            <div class="testimonial-author-info">
+              <strong>Pablo Lagos</strong>
+              <span>Founder — Logix Studio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="demo-footer">
+    <a href="/">← Volver a Convertix</a>
+  </footer>
+
+</body>
+</html>

@@ -21,14 +21,19 @@ import templates from '../data/templates.json';
             <div class="template-price">{template.price}</div>
             <h3 class="template-name">{template.name}</h3>
             <p class="template-description">{template.description}</p>
-            <a
-              href={`https://wa.me/573152498547?text=${encodeURIComponent(`¡Hola! Quiero la plantilla ${template.name} para mi negocio.`)}`}
-              class="btn btn-primary template-cta"
-              target="_blank"
-              rel="noopener"
-            >
-              Quiero esta &rarr;
-            </a>
+            <div class="template-actions">
+              <a
+                href={`https://wa.me/573152498547?text=${encodeURIComponent(`¡Hola! Quiero la plantilla ${template.name} para mi negocio.`)}`}
+                class="btn btn-primary template-cta"
+                target="_blank"
+                rel="noopener"
+              >
+                Quiero esta &rarr;
+              </a>
+              <a href={template.demoUrl} class="btn btn-outline template-demo-btn">
+                Ver demo &rarr;
+              </a>
+            </div>
           </article>
         ))
       }
@@ -137,6 +142,19 @@ import templates from '../data/templates.json';
   .template-cta {
     font-size: 0.85rem;
     padding: 10px 24px;
+  }
+
+  .template-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .template-demo-btn {
+    font-size: 0.85rem;
+    padding: 10px 24px;
+    text-align: center;
+    justify-content: center;
   }
 
   @media (max-width: 768px) {

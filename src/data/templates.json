@@ -5,7 +5,8 @@
     "description": "Para campañas, lanzamientos o promociones. Una página, un objetivo, máximo impacto.",
     "icon": "🚀",
     "price": "$250.000",
-    "image": "/templates/landing-page.svg"
+    "image": "/templates/landing-page.svg",
+    "demoUrl": "/demos/landing"
   },
   {
     "id": "negocio-local",
@@ -13,7 +14,8 @@
     "description": "Para restaurantes, tiendas, servicios locales. Secciones: inicio, servicios, ubicación, contacto.",
     "icon": "🏪",
     "price": "$280.000",
-    "image": "/templates/negocio-local.svg"
+    "image": "/templates/negocio-local.svg",
+    "demoUrl": "/demos/negocio-local"
   },
   {
     "id": "profesional",
@@ -21,7 +23,8 @@
     "description": "Para abogados, contadores, consultores. Perfil, servicios, testimonios, agenda.",
     "icon": "💼",
     "price": "$320.000",
-    "image": "/templates/profesional.svg"
+    "image": "/templates/profesional.svg",
+    "demoUrl": "/demos/profesional"
   },
   {
     "id": "ecommerce",
@@ -29,6 +32,7 @@
     "description": "Catálogo de productos, carrito, pagos integrados. Ideal para empezar a vender.",
     "icon": "🛍️",
     "price": "$350.000",
-    "image": "/templates/tienda-online.svg"
+    "image": "/templates/tienda-online.svg",
+    "demoUrl": "/demos/tienda-online"
   }
 ]
