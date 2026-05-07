@@ -1,0 +1,44 @@
+---
+export interface Props {
+  url?: string;
+}
+
+const { url } = Astro.props;
+const siteUrl = url || 'https://convertixweb.app';
+---
+
+<script type="application/ld+json" set:html>
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "CONVERTIX WEB",
+  "description": "Páginas web que convierten visitantes en clientes. Tu web lista en 5 días. Sin agencia, sin vendedores.",
+  "url": "https://convertixweb.app",
+  "telephone": "+573152498547",
+  "email": "juan.c.jerez@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CO"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "sameAs": [
+    "https://wa.me/573152498547"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Colombia"
+  },
+  "knowsAbout": [
+    "Diseño web",
+    "Landing pages",
+    "Páginas web express",
+    "Desarrollo web"
+  ]
+}
+</script>

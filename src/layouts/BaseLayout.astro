@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import StructuredData from '../components/StructuredData.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import DecorativeBlobs from '../components/DecorativeBlobs.astro';
@@ -13,8 +14,8 @@ export interface Props {
 }
 
 const {
-  title = 'CONVERTIX WEB | Tu web lista en 5 días. Sin vueltas.',
-  description = 'Sin agencia, sin vendedores. Hablás directo conmigo, te paso avances cada 2 días y pagás solo cuando esté listo.',
+  title = 'Landing Pages y Diseño Web en 5 Días | CONVERTIX WEB',
+  description = 'Landing pages y diseño web que convierten visitantes en clientes. Sin agencia ni vendedores: hablás directo conmigo, avances cada 2 días y pagás al final.',
   ogImage,
   url,
 } = Astro.props;
@@ -34,6 +35,7 @@ const {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <SEO title={title} description={description} ogImage={ogImage} url={url} />
+    <StructuredData url={url} />
   </head>
   <body>
     <!-- Decorative background -->

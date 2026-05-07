@@ -8,6 +8,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: 'static',
   adapter: netlify(),
-  site: 'https://convertixweb.com',
+  site: 'https://convertixweb.app',
   integrations: [sitemap()],
 });
