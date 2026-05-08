@@ -17,16 +17,34 @@
       </ul>
       <a href="/#contactame" class="btn btn-primary nav-cta">Hablemos</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menú">
+    <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <script>
   const navbar = document.getElementById('navbar');
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('navMenu');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    navMenu.classList.remove('open');
+    navOverlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  }
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    navMenu.classList.add('open');
+    navOverlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  }
 
   // Scroll effect
   if (navbar) {
@@ -40,18 +58,29 @@
   }
 
   // Hamburger toggle
-  if (hamburger && navMenu) {
+  if (hamburger && navMenu && navOverlay) {
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navMenu.classList.toggle('open');
+      if (navMenu.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     // Close menu on link click
     navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        navMenu.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when clicking overlay (outside the menu)
+    navOverlay.addEventListener('click', closeMenu);
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        closeMenu();
+        hamburger.focus();
+      }
     });
   }
 </script>
