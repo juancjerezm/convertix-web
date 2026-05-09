@@ -38,6 +38,8 @@ const {
     <StructuredData url={url} />
   </head>
   <body>
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
     <!-- Decorative background -->
     <DecorativeBlobs />
     <!-- Grain texture filter -->
@@ -52,5 +54,27 @@ const {
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      const bar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = progress + '%';
+      });
+    </script>
   </body>
 </html>
+
+<style is:global>
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gradient);
+    z-index: 10000;
+    transition: width 50ms linear;
+  }
+</style>

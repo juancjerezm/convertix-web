@@ -7,7 +7,7 @@ Prospects can only see SVG wireframes before buying. They need real demo pages t
 ## Scope
 
 ### In Scope
-- 4 standalone demo pages in `src/pages/demos/` (landing, negocio-local, profesional, tienda-online)
+- 4 standalone demo pages in `src/pages/demos/` (landing, negocio-local, profesional, blog)
 - Each demo self-contained: own `<html>`, fonts, inline styles — NO BaseLayout import
 - `templates.json`: add `demoUrl` field per template
 - `LandingsExpress.astro`: add "Ver demo →" secondary button linking to `demoUrl`
@@ -38,7 +38,7 @@ Prospects can only see SVG wireframes before buying. They need real demo pages t
 | `landing.astro` | SaaS/Startup — white bg, blue #2563eb accents | Hero, features grid, pricing tiers, testimonials |
 | `negocio-local.astro` | Restaurant/Café — cream #fef7e7, olive #4a6741, terracotta #c67b5c | Hero, menu sections, location/hours, reservation CTA |
 | `profesional.astro` | Lawyer/Consultant — white, navy #1e3a5f, gold #c9a84c | Hero+photo, services icons, about, contact form layout |
-| `tienda-online.astro` | Fashion e-commerce — white, coral #ff6b6b, black #1a1a2e | Product grid, category nav, featured banner, newsletter CTA |
+| `blog.astro` | Blog editorial — white, charcoal #1a1a2e, teal #0d9488 | Hero, article grid (6 posts), newsletter, footer, Merriweather + Inter |
 
 Each page is a complete HTML document with its own `<style>` block. Zero build-time JS.
 

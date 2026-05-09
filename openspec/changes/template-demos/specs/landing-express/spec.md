@@ -8,7 +8,7 @@
 #### Scenario: Templates data includes demo URLs
 - GIVEN `templates.json` is read
 - WHEN iterating over template entries
-- THEN each entry has a `demoUrl` field with a value like `/demos/landing`, `/demos/negocio-local`, `/demos/profesional`, or `/demos/tienda-online`
+- THEN each entry has a `demoUrl` field with a value like `/demos/landing`, `/demos/negocio-local`, `/demos/profesional`, or `/demos/blog`
 
 #### Scenario: Missing demo URL
 - GIVEN a template entry lacks the `demoUrl` field
