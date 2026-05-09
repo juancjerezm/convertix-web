@@ -29,9 +29,11 @@ import templates from '../data/templates.json';
               >
                 Solicitar cotización &rarr;
               </a>
-              <a href={template.demoUrl} class="btn btn-outline template-demo-btn">
-                Ver demo &rarr;
-              </a>
+              {template.demoUrl && (
+                <a href={template.demoUrl} class="btn btn-outline template-demo-btn">
+                  Ver demo &rarr;
+                </a>
+              )}
             </div>
           </article>
         ))
