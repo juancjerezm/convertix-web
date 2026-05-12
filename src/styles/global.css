@@ -282,6 +282,7 @@ img {
 
   .nav-links {
     flex-direction: column;
+    align-items: flex-start;
     gap: 20px;
     text-align: left;
     padding-left: 0;
