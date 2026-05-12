@@ -277,13 +277,15 @@ img {
 
   .nav-menu .theme-toggle {
     order: -1;
-    align-self: flex-end;
+    align-self: flex-start;
   }
 
   .nav-links {
     flex-direction: column;
     gap: 20px;
     text-align: left;
+    padding-left: 0;
+    list-style: none;
   }
 
   .nav-links a {
