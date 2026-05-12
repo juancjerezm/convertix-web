@@ -266,7 +266,7 @@ img {
     border-left: 1px solid var(--border);
     padding: 80px 32px 32px;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch;
     transition: right 0.3s ease;
     z-index: 99;
   }
@@ -275,9 +275,20 @@ img {
     right: 0;
   }
 
+  .nav-menu .theme-toggle {
+    order: -1;
+    align-self: flex-end;
+  }
+
   .nav-links {
     flex-direction: column;
     gap: 20px;
+    text-align: left;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
   }
 
   .nav-menu .nav-cta {
