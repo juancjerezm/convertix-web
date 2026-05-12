@@ -692,6 +692,24 @@ section {
 }
 
 /* ============================================
+   TYPEWRITER
+   ============================================ */
+.typewriter-text {
+  display: inline-block;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.typewriter-cursor {
+  animation: blink 1s step-end infinite;
+  font-weight: 400;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 @keyframes fade-in-up {

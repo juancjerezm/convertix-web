@@ -2,7 +2,7 @@
   <div class="container">
     <div class="hero-content">
       <h1>
-        Tu web lista en <span class="highlight">5 días</span>.<br>
+        Tu web lista en <span class="highlight typewriter-text" id="heroTyping">5 días<span class="typewriter-cursor">|</span></span>.<br>
         Sin vueltas.
       </h1>
       <p>
@@ -16,3 +16,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  const words = ["5 días", "resultados", "clientes", "ventas"];
+  const el = document.getElementById('heroTyping');
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      el.innerHTML = words[index] + '<span class="typewriter-cursor">|</span>';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 250);
+  }, 3000);
+</script>
