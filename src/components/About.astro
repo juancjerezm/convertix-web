@@ -17,7 +17,7 @@
       </div>
       <div class="about-stats">
         <div class="stat">
-          <span class="stat-number">50%</span>
+          <span class="stat-number" data-count="50" data-suffix="%">50%</span>
           <span class="stat-label">Al empezar, 50% al entregar</span>
         </div>
         <div class="stat">
@@ -82,3 +82,40 @@
     }
   }
 </style>
+
+<script>
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    let start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased) + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target + suffix;
+      }
+    }
+
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(step);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.stat-number[data-count]').forEach(animateCounter);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  const about = document.querySelector('.about');
+  if (about) observer.observe(about);
+</script>

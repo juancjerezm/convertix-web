@@ -696,6 +696,7 @@ section {
    ============================================ */
 .typewriter-text {
   display: inline-block;
+  min-width: 6ch;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
