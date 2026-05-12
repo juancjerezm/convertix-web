@@ -2,7 +2,7 @@
   <div class="container">
     <div class="hero-content">
       <h1>
-        Tu web lista en <span class="highlight typewriter-text" id="heroTyping">5 días<span class="typewriter-cursor">|</span></span><br>
+        Tu web lista en <span class="highlight typewriter-text" id="heroTyping">5 días</span><span class="typewriter-cursor">|</span><br>
         Sin vueltas.
       </h1>
       <p>
@@ -18,18 +18,49 @@
 </section>
 
 <script>
-  const words = ["5 días", "resultados", "clientes", "ventas"];
+  const words = ["resultados", "clientes", "ventas"];
   const el = document.getElementById('heroTyping');
-  let index = 0;
+  const cursor = document.querySelector('.typewriter-cursor');
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typeSpeed = 80;
+  const deleteSpeed = 40;
+  const pauseBetween = 2000;
 
-  setInterval(() => {
-    index = (index + 1) % words.length;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(6px)';
-    setTimeout(() => {
-      el.innerHTML = words[index] + '<span class="typewriter-cursor">|</span>';
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, 250);
-  }, 3000);
+  function type() {
+    const current = words[wordIndex];
+
+    if (!isDeleting) {
+      // Typing
+      charIndex++;
+      el.textContent = current.substring(0, charIndex);
+
+      if (charIndex === current.length) {
+        // Word complete, pause then start deleting
+        isDeleting = true;
+        cursor.classList.remove('blinking');
+        setTimeout(type, pauseBetween);
+        return;
+      }
+    } else {
+      // Deleting
+      charIndex--;
+      el.textContent = current.substring(0, charIndex);
+
+      if (charIndex === 0) {
+        // Word deleted, move to next
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        cursor.classList.add('blinking');
+        setTimeout(type, 300);
+        return;
+      }
+    }
+
+    setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+  }
+
+  // Start after initial pause
+  setTimeout(type, 2000);
 </script>

@@ -697,12 +697,17 @@ section {
 .typewriter-text {
   display: inline-block;
   min-width: 6ch;
-  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .typewriter-cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: var(--accent-blue);
+  margin-left: 2px;
+}
+
+.typewriter-cursor.blinking {
   animation: blink 1s step-end infinite;
-  font-weight: 400;
 }
 
 @keyframes blink {

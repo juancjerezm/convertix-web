@@ -1,0 +1,119 @@
+<section class="faq reveal" id="faq">
+  <div class="container">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <p class="section-subtitle">Si tenés otra duda, hablame directamente.</p>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>¿Cuánto cuesta una landing page?</summary>
+        <p>Las landings express arrancan en <strong>150 USD</strong> (one-page). Sitios más completos con múltiples secciones, formularios y blog desde <strong>350 USD</strong>. Siempre te paso el precio final antes de arrancar, sin sorpresas.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿En cuánto tiempo está lista?</summary>
+        <p>Una landing express está lista en <strong>5 días hábiles</strong>. Sitios más grandes entre 7 y 15 días. Te paso avances cada 2 días para que veas el progreso.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué incluye el servicio?</summary>
+        <p>Diseño responsive, dominio (.com / .app), hosting el primer año, SEO on-page, formulario de contacto, integración con WhatsApp, botón de pago si lo necesitás, y panel para que puedas editar contenido vos mismo.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo es el pago?</summary>
+        <p><strong>50% al empezar, 50% cuando está listo.</strong> Si no te gusta el resultado, no pagás el segundo 50%. Transferencia, Nequi, Daviplata o PayPal.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo actualizar la web yo mismo después?</summary>
+        <p>Sí. Te entrego un panel de administración simple donde podés cambiar textos, imágenes y precios sin tocar código. Y si algo se rompe, me escribís.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    text-align: center;
+  }
+
+  .faq .section-subtitle {
+    margin: 0 auto 56px;
+  }
+
+  .faq-list {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color var(--transition);
+  }
+
+  .faq-item[open] {
+    border-color: rgba(var(--accent-blue-rgb), 0.3);
+  }
+
+  .faq-item summary {
+    padding: 20px 24px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    color: var(--text);
+    transition: color var(--transition);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    transition: transform 0.3s ease, color var(--transition);
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] summary {
+    color: var(--accent-blue);
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+    color: var(--accent-blue);
+  }
+
+  .faq-item p {
+    padding: 0 24px 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .faq-item summary {
+      padding: 16px 20px;
+      font-size: 0.95rem;
+    }
+
+    .faq-item p {
+      padding: 0 20px 16px;
+    }
+  }
+</style>
