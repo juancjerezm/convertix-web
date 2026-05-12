@@ -2,7 +2,7 @@
   <div class="container">
     <div class="hero-content">
       <h1>
-        Tu web lista en <span class="highlight typewriter-text" id="heroTyping">5 días</span><span class="typewriter-cursor">|</span><br>
+        Tu web lista en <span class="highlight typewriter-text" id="heroTyping">5 días</span><br>
         Sin vueltas.
       </h1>
       <p>
@@ -20,7 +20,6 @@
 <script>
   const words = ["resultados", "clientes", "ventas"];
   const el = document.getElementById('heroTyping');
-  const cursor = document.querySelector('.typewriter-cursor');
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -32,27 +31,21 @@
     const current = words[wordIndex];
 
     if (!isDeleting) {
-      // Typing
       charIndex++;
       el.textContent = current.substring(0, charIndex);
 
       if (charIndex === current.length) {
-        // Word complete, pause then start deleting
         isDeleting = true;
-        cursor.classList.remove('blinking');
         setTimeout(type, pauseBetween);
         return;
       }
     } else {
-      // Deleting
       charIndex--;
       el.textContent = current.substring(0, charIndex);
 
       if (charIndex === 0) {
-        // Word deleted, move to next
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
-        cursor.classList.add('blinking');
         setTimeout(type, 300);
         return;
       }
@@ -61,6 +54,5 @@
     setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
   }
 
-  // Start after initial pause
   setTimeout(type, 2000);
 </script>

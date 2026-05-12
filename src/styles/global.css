@@ -699,22 +699,6 @@ section {
   min-width: 6ch;
 }
 
-.typewriter-cursor {
-  display: inline-block;
-  font-weight: 300;
-  color: var(--accent-blue);
-  margin-left: 2px;
-}
-
-.typewriter-cursor.blinking {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 /* ============================================
    ANIMATIONS
    ============================================ */
