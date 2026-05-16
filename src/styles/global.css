@@ -18,7 +18,7 @@
   --gradient:     linear-gradient(135deg, #0070f3, #7928ca);
   --border:       rgba(255,255,255,0.06);
   --particle-opacity: 0.45;
-  --particle-line-opacity: 0.12;
+  --particle-line-opacity: 0.16;
   --navbar-scrolled-bg: rgba(10,10,15,0.85);
   --btn-outline-border: rgba(255,255,255,0.2);
   --btn-outline-border-hover: rgba(255,255,255,0.5);
@@ -42,7 +42,7 @@
   --text-muted:   #495057;
   --border:       rgba(0,0,0,0.08);
   --particle-opacity: 0.22;
-  --particle-line-opacity: 0.06;
+  --particle-line-opacity: 0.09;
   --navbar-scrolled-bg: rgba(255,255,255,0.85);
   --btn-outline-border: rgba(0,0,0,0.15);
   --btn-outline-border-hover: rgba(0,0,0,0.3);
