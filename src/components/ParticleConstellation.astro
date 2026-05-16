@@ -1,0 +1,169 @@
+<!-- Ambient particle constellation — animated dot grid with proximity lines -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  import anime from 'animejs/lib/anime.es.js';
+
+  let rafId = null;
+  let animeTl = null;
+  let particles = [];
+  let currentPOpacity = 0.3;
+  let currentLOpacity = 0.08;
+  let currentRgb = '0, 112, 243';
+
+  function refreshStyleVars() {
+    const style = getComputedStyle(document.documentElement);
+    currentRgb = style.getPropertyValue('--accent-blue-rgb').trim() || '0, 112, 243';
+    currentPOpacity = parseFloat(style.getPropertyValue('--particle-opacity').trim()) || 0.3;
+    currentLOpacity = parseFloat(style.getPropertyValue('--particle-line-opacity').trim()) || 0.08;
+  }
+
+  function cleanup() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    if (animeTl) {
+      animeTl.pause();
+      animeTl = null;
+    }
+  }
+
+  function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    cleanup();
+    refreshStyleVars();
+
+    const isMobile = canvas.width < 768;
+    const particleCount = isMobile ? 25 : 60;
+    const connectRadius = isMobile ? 100 : 150;
+
+    particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: 0,
+      vy: 0,
+      baseX: 0,
+      baseY: 0,
+    }));
+
+    particles.forEach(p => {
+      p.baseX = p.x;
+      p.baseY = p.y;
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Proximity lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectRadius) {
+            const alpha = currentLOpacity * (1 - dist / connectRadius);
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${currentRgb}, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Particle dots
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${currentRgb}, ${currentPOpacity})`;
+        ctx.fill();
+      }
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      // Static render only — no rAF loop, no anime
+      draw();
+      return;
+    }
+
+    // rAF draw loop
+    function loop() {
+      draw();
+      rafId = requestAnimationFrame(loop);
+    }
+    rafId = requestAnimationFrame(loop);
+
+    // Independent random drift per particle — avoids synchronized diagonal movement
+    const driftRange = isMobile ? 30 : 50;
+    const driftTargets = particles.map(p => ({
+      x: p.baseX + (Math.random() - 0.5) * driftRange * 2,
+      y: p.baseY + (Math.random() - 0.5) * driftRange * 2,
+    }));
+
+    animeTl = anime.timeline({
+      loop: true,
+      direction: 'alternate',
+      easing: 'easeInOutSine',
+    });
+
+    animeTl.add({
+      targets: particles,
+      x: (el, i) => driftTargets[i].x,
+      y: (el, i) => driftTargets[i].y,
+      duration: () => 4000 + Math.random() * 2000, // 4-6s per particle
+      delay: anime.stagger(100),
+    });
+  }
+
+  function setupCanvas() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resize();
+
+    // ResizeObserver on <html> to handle viewport changes
+    const ro = new ResizeObserver(() => {
+      resize();
+      initParticles();
+    });
+    ro.observe(document.documentElement);
+
+    // MutationObserver on <html> data-theme changes → refresh style vars
+    const mo = new MutationObserver(() => {
+      refreshStyleVars();
+      // No need to re-init — draw() reads updated vars
+    });
+    mo.observe(document.documentElement, { attributeFilter: ['data-theme'] });
+
+    // Initial init after canvas is sized
+    initParticles();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCanvas);
+  } else {
+    setupCanvas();
+  }
+</script>

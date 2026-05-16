@@ -27,7 +27,6 @@
     background: var(--accent-purple);
     top: -200px;
     right: -150px;
-    animation: floatBlob 20s ease-in-out infinite;
   }
 
   .bg-blob--2 {
@@ -36,7 +35,6 @@
     background: var(--accent-blue);
     bottom: 10%;
     left: -100px;
-    animation: floatBlob 25s ease-in-out infinite reverse;
   }
 
   .bg-blob--3 {
@@ -45,20 +43,6 @@
     background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
     top: 50%;
     right: -200px;
-    animation: floatBlob 22s ease-in-out infinite;
-    animation-delay: -10s;
-  }
-
-  @keyframes floatBlob {
-    0%, 100% {
-      transform: translate(0, 0) scale(1);
-    }
-    33% {
-      transform: translate(30px, -40px) scale(1.1);
-    }
-    66% {
-      transform: translate(-20px, 20px) scale(0.95);
-    }
   }
 
   @media (max-width: 768px) {
@@ -86,3 +70,59 @@
     }
   }
 </style>
+
+<script>
+  import anime from 'animejs/lib/anime.es.js';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    const blobDefs = [
+      {
+        el: document.querySelector('.bg-blob--1'),
+        values: [
+          '50%',
+          '40% 60% 55% 45%',
+          '30% 70% 25% 75%',
+          '55% 45% 65% 35%',
+          '50%',
+        ],
+        duration: 20000,
+      },
+      {
+        el: document.querySelector('.bg-blob--2'),
+        values: [
+          '50%',
+          '60% 40% 45% 55%',
+          '70% 30% 75% 25%',
+          '45% 55% 35% 65%',
+          '50%',
+        ],
+        duration: 22000,
+      },
+      {
+        el: document.querySelector('.bg-blob--3'),
+        values: [
+          '50%',
+          '35% 65% 40% 60%',
+          '65% 35% 60% 40%',
+          '40% 60% 30% 70%',
+          '50%',
+        ],
+        duration: 20000,
+      },
+    ];
+
+    blobDefs.forEach((b, idx) => {
+      if (!b.el) return;
+      anime({
+        targets: b.el,
+        borderRadius: b.values,
+        duration: b.duration,
+        delay: idx * 3000,
+        loop: true,
+        direction: 'alternate',
+        easing: 'easeInOutSine',
+      });
+    });
+  }
+</script>
