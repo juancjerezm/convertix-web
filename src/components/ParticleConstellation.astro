@@ -110,10 +110,12 @@
     }
     rafId = requestAnimationFrame(loop);
 
-    // Anime.js staggered drift for organic desync
-    const staggerFn = anime.stagger(100, { from: 'center' });
-    // Scale stagger offset so particles drift within a reasonable range
-    const scale = 0.03;
+    // Independent random drift per particle — avoids synchronized diagonal movement
+    const driftRange = isMobile ? 30 : 50;
+    const driftTargets = particles.map(p => ({
+      x: p.baseX + (Math.random() - 0.5) * driftRange * 2,
+      y: p.baseY + (Math.random() - 0.5) * driftRange * 2,
+    }));
 
     animeTl = anime.timeline({
       loop: true,
@@ -123,9 +125,10 @@
 
     animeTl.add({
       targets: particles,
-      x: (el, i) => el.baseX + staggerFn(i, particles.length) * scale,
-      y: (el, i) => el.baseY + staggerFn(i, particles.length) * scale,
-      duration: 4000,
+      x: (el, i) => driftTargets[i].x,
+      y: (el, i) => driftTargets[i].y,
+      duration: () => 4000 + Math.random() * 2000, // 4-6s per particle
+      delay: anime.stagger(100),
     });
   }
 
