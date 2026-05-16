@@ -4,6 +4,7 @@ import StructuredData from '../components/StructuredData.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import DecorativeBlobs from '../components/DecorativeBlobs.astro';
+import ParticleConstellation from '../components/ParticleConstellation.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -52,7 +53,9 @@ const {
   <body>
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
-    <!-- Decorative background -->
+    <!-- Ambient particle constellation (z-index: -1) -->
+    <ParticleConstellation />
+    <!-- Decorative background blobs (z-index: 0) -->
     <DecorativeBlobs />
     <!-- Grain texture filter -->
     <svg style="display:none">
