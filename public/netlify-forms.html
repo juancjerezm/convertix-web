@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Form Detection</title></head>
+<body>
+  <!--
+    Static form detection for Netlify.
+    Netlify scans this file at deploy time to register the form.
+    The real form lives in CtaFinal.astro and is rendered dynamically.
+  -->
+  <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks">
+    <input type="hidden" name="form-name" value="contacto">
+    <p style="display:none">
+      <label>No llenar: <input name="bot-field"></label>
+    </p>
+    <input type="text" name="nombre" required>
+    <input type="email" name="email" required>
+    <textarea name="mensaje" required></textarea>
+    <button type="submit">Enviar mensaje</button>
+  </form>
+</body>
+</html>
