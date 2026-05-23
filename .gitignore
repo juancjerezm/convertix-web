@@ -19,6 +19,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Tool-generated config
+.atl/
+.astro/settings.json
+
 # Test artifacts
 tests/screenshots/
 test-results/
