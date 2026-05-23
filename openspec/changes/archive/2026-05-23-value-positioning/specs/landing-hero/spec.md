@@ -1,13 +1,11 @@
-# Landing Hero
+# Delta for Landing Hero
 
-## Purpose
-Primary visual introduction with value-proposition headline, typing animation, subtitle, and two calls to action. No price anchoring.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Hero Content
 
 The system MUST display a hero section with the value-proposition headline, a supporting subtitle, and two call-to-action buttons.
+(Previously: headline "Tu web lista en 5 días. Sin vueltas." with typing animation on "5 días" cycling through timing variants.)
 
 #### Scenario: Visitor loads the page
 - GIVEN a visitor navigates to the landing page

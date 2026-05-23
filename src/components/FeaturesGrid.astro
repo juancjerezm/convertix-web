@@ -1,0 +1,143 @@
+<section class="features reveal" id="servicios">
+  <div class="container">
+    <p class="section-label">Qué incluye</p>
+    <h2 class="section-title">Todo lo que tu web necesita</h2>
+    <p class="section-subtitle">
+      Desarrollo a medida. Sin plugins, sin plantillas genéricas, sin costos ocultos.
+    </p>
+
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>Desarrollo a Medida</h3>
+        <ul class="feature-list">
+          <li>Stack flexible: Astro, React o Next según tu proyecto</li>
+          <li>Diseño 100% personalizado, sin templates genéricos</li>
+          <li>Adaptable a celular, tablet y desktop</li>
+          <li>Panel de administración si tu proyecto lo necesita</li>
+          <li>Integración con tus redes sociales</li>
+          <li>Dominio propio incluido el primer año</li>
+        </ul>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Performance & Seguridad</h3>
+        <ul class="feature-list">
+          <li>Carga instantánea: solo el código necesario, sin bloat</li>
+          <li>100/100 en Lighthouse desde el día uno</li>
+          <li>Sin plugins de terceros, sin superficie de ataque</li>
+          <li>Hosting incluido sin costo mensual</li>
+          <li>Certificado SSL de seguridad</li>
+          <li>Correos corporativos — configuración incluida</li>
+        </ul>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Entrega & Soporte</h3>
+        <ul class="feature-list">
+          <li>SEO on-page completo (meta tags, sitemap, schema)</li>
+          <li>Botón de WhatsApp directo integrado</li>
+          <li>Capacitación personalizada en video</li>
+          <li>Soporte post-entrega (4 cambios incluidos)</li>
+          <li>Garantía de 7 días</li>
+          <li>Mantenimiento opcional desde $30.000/mes</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    text-align: center;
+  }
+
+  .features .section-subtitle {
+    margin: 0 auto 64px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 40px 32px;
+    text-align: left;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-theme="dark"] .feature-card {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(var(--accent-blue-rgb), 0.12), 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="dark"] .feature-card:hover {
+    box-shadow: 0 8px 24px rgba(var(--accent-blue-rgb), 0.2), 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    background: rgba(var(--accent-blue-rgb), 0.1);
+    color: var(--accent-blue);
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+      padding: 28px 24px;
+    }
+  }
+</style>

@@ -1,13 +1,11 @@
-# Landing Process
+# Delta for Landing Process
 
-## Purpose
-Visual timeline showing the branded 3-step "Método Vuelo" delivery workflow.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Process Steps
 
 The system MUST display three sequential steps under the branded section header "Método Vuelo".
+(Previously: generic "Proceso" / "Cómo trabajamos" header with steps: Descubrimiento, Diseño & Desarrollo, Lanzamiento.)
 
 #### Scenario: Section branding
 - GIVEN a visitor scrolls to the process section

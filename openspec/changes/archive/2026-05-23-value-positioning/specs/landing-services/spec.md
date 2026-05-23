@@ -1,13 +1,11 @@
-# Landing Services
+# Delta for Landing Services
 
-## Purpose
-Showcase three detailed feature cards with deliverable breakdowns, replacing generic service cards.
+## MODIFIED Requirements
 
-## Requirements
-
-### Requirement: Feature Cards
+### Requirement: Service Cards → Feature Cards
 
 The system MUST render three feature cards: Desarrollo a Medida, Performance & Seguridad, and Entrega & Soporte.
+(Previously: three generic service cards — Landing Pages, Corporate Sites, E-commerce — with single descriptions.)
 
 Each card SHALL contain:
 - An icon in an accent-tinted container
