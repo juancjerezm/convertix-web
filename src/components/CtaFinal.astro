@@ -1,3 +1,7 @@
+---
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+---
+
 <section class="cta-final reveal" id="contacto">
   <div class="container">
     <div class="cta-card">
@@ -34,11 +38,18 @@
           <label for="mensaje">¿Qué necesitás?</label>
           <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Contame brevemente tu proyecto o idea..."></textarea>
         </div>
+        {turnstileKey && (
+          <div class="cf-turnstile" data-sitekey={turnstileKey} data-theme="dark"></div>
+        )}
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>
       </form>
     </div>
   </div>
 </section>
+
+{turnstileKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
 
 <style>
   .cta-final {

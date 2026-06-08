@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Política de Privacidad | CONVERTIX WEB">
+  <section class="legal">
+    <div class="container">
+      <h1>Política de Privacidad</h1>
+      <p class="updated">Última actualización: Junio 2026</p>
+
+      <h2>1. Datos que recopilamos</h2>
+      <p>
+        A través del formulario de contacto recopilamos únicamente el nombre, correo electrónico
+        y mensaje que nos proporciones voluntariamente. No recopilamos datos de navegación,
+        no usamos cookies de seguimiento ni analytics de terceros.
+      </p>
+
+      <h2>2. Finalidad</h2>
+      <p>
+        Tus datos se usan exclusivamente para responder a tu consulta y coordinar el servicio
+        solicitado. No se utilizan para fines comerciales, no se venden ni se comparten con
+        terceros.
+      </p>
+
+      <h2>3. Almacenamiento</h2>
+      <p>
+        Los mensajes del formulario se almacenan en los servidores de Netlify (proveedor de
+        hosting de este sitio). No mantenemos una base de datos propia con tus datos.
+      </p>
+
+      <h2>4. Protección anti-spam</h2>
+      <p>
+        Utilizamos Cloudflare Turnstile para proteger el formulario de contacto contra spam
+        y uso automatizado malintencionado. Turnstile no utiliza cookies y cumple con los
+        estándares de privacidad de Cloudflare. Para más información, consultá la
+        <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Política de Privacidad de Cloudflare</a>
+        y el
+        <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">Anexo de Protección de Datos</a>.
+      </p>
+
+      <h2>5. Responsable</h2>
+      <p>
+        <strong>Juan C. Jerez</strong><br />
+        Correo: juan.c.jerez@gmail.com<br />
+        WhatsApp: +57 316 3000208
+      </p>
+
+      <p class="back-link"><a href="/">← Volver al inicio</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: 120px 0 80px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .legal h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .updated {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+  }
+
+  .legal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: var(--text);
+  }
+
+  .legal p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .legal a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+  }
+
+  .back-link {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .legal {
+      padding: 100px 24px 60px;
+    }
+  }
+</style>
