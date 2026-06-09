@@ -16,6 +16,7 @@
   --text-muted: #a0a0b0;
   --accent-blue: #0070f3;
   --accent-purple: #7928ca;
+  --accent-orange: #db471d;
   --accent-blue-rgb: 0, 112, 243;
   --gradient: linear-gradient(135deg, #0070f3, #7928ca);
   --border: rgba(255, 255, 255, 0.06);
@@ -449,6 +450,10 @@ p { text-wrap: pretty; }
   background-clip: text;
 }
 
+.hero h1 .highlight-orange {
+  color: var(--accent-orange);
+}
+
 .hero p {
   color: var(--text-muted);
   font-size: 1.15rem;
@@ -589,7 +594,8 @@ p { text-wrap: pretty; }
   justify-content: center;
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: var(--accent-orange);
+  font-variant-numeric: tabular-nums;
   transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
 
