@@ -4,7 +4,7 @@
     "name": "Landing Page",
     "description": "Para campañas, lanzamientos o promociones. Una página, un objetivo, máximo impacto.",
     "icon": "🚀",
-    "price": "$400.000",
+    "price": "$550.000",
     "image": "/templates/landing.webp",
     "demoUrl": "/demos/landing"
   },
@@ -13,7 +13,7 @@
     "name": "Profesional",
     "description": "Para abogados, contadores, consultores. Perfil, servicios, testimonios, agenda.",
     "icon": "💼",
-    "price": "$450.000",
+    "price": "$650.000",
     "image": "/templates/profesional.webp",
     "demoUrl": "/demos/profesional"
   },
@@ -22,7 +22,7 @@
     "name": "Negocio Local",
     "description": "Para restaurantes, tiendas, servicios locales. Secciones: inicio, servicios, ubicación, contacto.",
     "icon": "🏪",
-    "price": "$500.000",
+    "price": "$750.000",
     "image": "/templates/negocio-local.webp",
     "demoUrl": "/demos/negocio-local"
   },
@@ -31,7 +31,7 @@
     "name": "Blog Profesional",
     "description": "Para creadores de contenido, escritores, marketers. Blog con artículos, categorías y newsletter.",
     "icon": "📝",
-    "price": "$550.000",
+    "price": "$800.000",
     "image": "/templates/blog.webp",
     "demoUrl": "/demos/blog"
   }

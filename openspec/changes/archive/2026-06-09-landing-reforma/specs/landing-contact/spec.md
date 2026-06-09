@@ -1,12 +1,11 @@
-# Landing Contact
+# Delta for Landing Contact
 
-## Purpose
-Contact form, WhatsApp link, and email for client inquiries.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Contact Channels
 The system MUST provide three contact channels: a form, a WhatsApp link with prefill message, and a visible email address. The CTA heading SHALL read "Cuéntame tu proyecto" and the WhatsApp button SHALL read "Cuéntame tu proyecto 📲".
+
+(Previously: CTA heading was "¿Hablamos hoy?" and WhatsApp button was "💬 Escribime ahora" without message prefill)
 
 #### Scenario: Visitor opens contact section
 - GIVEN a visitor scrolls to the contact section
@@ -26,11 +25,3 @@ The system MUST provide three contact channels: a form, a WhatsApp link with pre
 - WHEN the contact section renders
 - THEN the Netlify form with name, email, and message fields SHALL remain functional
 - AND honeypot + Turnstile anti-spam SHALL remain active
-
-### Requirement: Form Validation
-The system MUST validate that required fields are filled before submission.
-
-#### Scenario: Visitor submits incomplete form
-- GIVEN the contact form is visible
-- WHEN a visitor submits without filling required fields
-- THEN the form SHALL display validation errors and prevent submission

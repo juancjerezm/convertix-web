@@ -1,28 +1,6 @@
-# Landing Layout
+# Delta for Landing Layout
 
-## Purpose
-Component composition order in `index.astro` — the single source of truth for section ordering on the landing page.
-
-## Requirements
-
-### Requirement: FeaturesGrid Import
-
-The system SHALL import and render `FeaturesGrid.astro` in place of `ServicesGrid.astro` within `index.astro`. The `ConvertixAI` import SHALL also be present.
-
-#### Scenario: Import statement
-- GIVEN index.astro is compiled
-- WHEN the import section is processed
-- THEN the import for ServicesGrid SHALL be absent and imports for FeaturesGrid AND ConvertixAI SHALL be present
-
-#### Scenario: Render position
-- GIVEN index.astro renders the landing page
-- WHEN the component tree is evaluated
-- THEN FeaturesGrid SHALL render after Hero, ConvertixAI SHALL render after FeaturesGrid, and ProcessTimeline SHALL render after ConvertixAI
-
-#### Scenario: No other section displacement
-- GIVEN the imports are changed
-- WHEN the page renders
-- THEN all other sections (LandingsExpress, Portfolio, About, FAQ, ContactForm, CtaFinal) SHALL remain in their existing order
+## ADDED Requirements
 
 ### Requirement: ConvertixAI Insertion
 The system MUST render `<ConvertixAI />` between FeaturesGrid and ProcessTimeline in `index.astro`.
@@ -68,3 +46,26 @@ The system SHALL apply CSS refinements for readability and interaction feedback.
 - GIVEN any section heading (`h1` or `h2`)
 - WHEN the heading wraps to multiple lines
 - THEN line breaks SHALL be balanced via `text-wrap: balance`
+
+## MODIFIED Requirements
+
+### Requirement: FeaturesGrid Import
+
+The system SHALL import and render `FeaturesGrid.astro` in place of `ServicesGrid.astro` within `index.astro`. The `ConvertixAI` import SHALL also be present.
+
+(Previously: only FeaturesGrid replacement was specified; ConvertixAI was not imported)
+
+#### Scenario: Import statement
+- GIVEN index.astro is compiled
+- WHEN the import section is processed
+- THEN the import for ServicesGrid SHALL be absent and imports for FeaturesGrid AND ConvertixAI SHALL be present
+
+#### Scenario: Render position
+- GIVEN index.astro renders the landing page
+- WHEN the component tree is evaluated
+- THEN FeaturesGrid SHALL render after Hero, ConvertixAI SHALL render after FeaturesGrid, and ProcessTimeline SHALL render after ConvertixAI
+
+#### Scenario: No other section displacement
+- GIVEN the imports are changed
+- WHEN the page renders
+- THEN all other sections (LandingsExpress, Portfolio, About, FAQ, ContactForm, CtaFinal) SHALL remain in their existing order

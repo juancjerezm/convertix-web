@@ -1,19 +1,23 @@
 ---
 export interface Props {
-  title: string;
-  description: string;
-  ogImage?: string;
-  url?: string;
+  title: string
+  description: string
+  ogImage?: string
+  url?: string
 }
 
-const { title, description, ogImage, url } = Astro.props;
-const defaultOgImage = ogImage || '/og-image.png';
-const siteUrl = url || 'https://convertixweb.app';
+// biome-ignore lint/correctness/noUnusedVariables: used in Astro template
+const { title, description, ogImage, url } = Astro.props
+// biome-ignore lint/correctness/noUnusedVariables: used in Astro template
+const defaultOgImage = ogImage || '/og-image.png'
+// biome-ignore lint/correctness/noUnusedVariables: used in Astro template
+const siteUrl = url || 'https://convertixweb.app'
 ---
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="keywords" content="página web Colombia, diseño web Colombia, landing page Colombia, chatbot WhatsApp Colombia, automatización Colombia, desarrollo web Colombia, IA para negocios" />
 
 <!-- Canonical -->
 <link rel="canonical" href={siteUrl} />

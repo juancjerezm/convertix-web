@@ -1,13 +1,13 @@
 ---
 export interface Props {
-  url?: string;
+  url?: string
 }
 
-const { url } = Astro.props;
-const siteUrl = url || 'https://convertixweb.app';
+const { url } = Astro.props
+const _siteUrl = url || 'https://convertixweb.app'
 ---
 
-<script type="application/ld+json" set:html>
+<script type="application/ld+json" is:inline>
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -38,7 +38,11 @@ const siteUrl = url || 'https://convertixweb.app';
     "Diseño web",
     "Landing pages",
     "Páginas web express",
-    "Desarrollo web"
+    "Desarrollo web",
+    "chatbot WhatsApp Colombia",
+    "automatización Python",
+    "consultoría IA",
+    "página web Colombia"
   ]
 }
 </script>

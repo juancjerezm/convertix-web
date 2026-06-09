@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
   testDir: './tests',
@@ -9,13 +9,13 @@ export default defineConfig({
     headless: true,
     baseURL: 'http://localhost:4321',
     screenshot: 'off',
-    video: 'off',
+    video: 'off'
   },
   // Auto-start Astro dev server if not already running
   webServer: {
     command: 'pnpm dev',
     port: 4321,
     timeout: 30_000,
-    reuseExistingServer: true,
-  },
-});
+    reuseExistingServer: true
+  }
+})

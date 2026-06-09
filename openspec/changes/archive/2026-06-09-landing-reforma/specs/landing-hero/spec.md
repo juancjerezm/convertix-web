@@ -1,13 +1,12 @@
-# Landing Hero
+# Delta for Landing Hero
 
-## Purpose
-Primary visual introduction with value-proposition headline, subtitle, and two calls to action. No price anchoring.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Hero Content
 
 The system MUST display a hero section with a static value-proposition headline, a supporting subtitle, and two call-to-action buttons. The headline SHALL use `text-wrap: balance`.
+
+(Previously: headline had typewriter cycling animation on highlight words)
 
 #### Scenario: Visitor loads the page
 - GIVEN a visitor navigates to the landing page
@@ -34,3 +33,10 @@ The system MUST display a hero section with a static value-proposition headline,
 - GIVEN the viewport width is between 375px and 1440px
 - WHEN the `h1` heading renders
 - THEN the headline text SHALL wrap with `text-wrap: balance` to prevent widows
+
+## REMOVED Requirements
+
+### Requirement: Typing Animation
+
+(Reason: The typewriter script (Hero.astro lines 19–57) targets an element `#heroTyping` that does not exist in the markup. The script is dead code and has never been functional. ScrollReveal fade-in is the sole reveal effect.)
+(Migration: None — the animation was non-functional. No visual regression expected.)
