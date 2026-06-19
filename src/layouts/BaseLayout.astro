@@ -49,6 +49,7 @@ const {
 
     <SEO title={title} description={description} ogImage={ogImage} url={url} />
     <StructuredData url={url} />
+    <slot name="head" />
   </head>
   <body>
     <!-- Scroll progress bar -->
