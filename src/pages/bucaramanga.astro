@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const title = 'Desarrollo Web en Bucaramanga | Convertix Web'
+const description = 'Páginas web, chatbots con IA y automatizaciones para negocios en Bucaramanga, Floridablanca, Piedecuesta y Girón. Trato directo con el desarrollador, sin agencia.'
+const url = 'https://convertixweb.app/bucaramanga/'
+---
+
+<BaseLayout title={title} description={description} url={url}>
+  <section class="local-hero">
+    <div class="container">
+      <span class="local-badge">📍 Área Metropolitana de Bucaramanga</span>
+      <h1>Desarrollo web en Bucaramanga <span>— directo con el desarrollador</span></h1>
+      <p class="local-sub">
+        Páginas web, chatbots con IA y automatizaciones para negocios de Bucaramanga,
+        Floridablanca, Piedecuesta y Girón. Sin agencia, sin vendedores, sin vueltas.
+      </p>
+      <a href="https://wa.me/573163000208" class="btn btn-primary" target="_blank" rel="noopener">
+        Escribime al WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <section class="local-diff">
+    <div class="container">
+      <h2>¿Por qué un desarrollador local?</h2>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon">🗣️</div>
+          <h3>Trato directo</h3>
+          <p>
+            Soy Juan Carlos, desarrollador en Bucaramanga. Cuando me escribís, me respondo yo.
+            No hay account manager, no hay vendedor, no hay intermediario.
+          </p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🕐</div>
+          <h3>Misma zona horaria</h3>
+          <p>
+            Nada de esperar 48 horas porque el equipo está en otro huso horario. Si necesitás un
+            cambio, hablamos hoy y está listo hoy.
+          </p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">☕</div>
+          <h3>Café en persona</h3>
+          <p>
+            ¿Preferís vernos las caras? Nos tomamos un café en Cabecera, Cañaveral o donde te
+            quede cómodo y armamos el proyecto juntos.
+          </p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🏙️</div>
+          <h3>Conozco el mercado local</h3>
+          <p>
+            Entiendo lo que necesita un negocio en Bucaramanga porque vivo acá. Sé cómo se mueve
+            el comercio local, qué espera tu cliente y qué funciona en esta región.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local-services">
+    <div class="container">
+      <h2>Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>🖥️ Páginas web</h3>
+          <p class="service-price">Desde $550.000</p>
+          <p>Sitios profesionales, rápidos, optimizados para Google. Diseño 100% personalizado. Entrega en 5 días.</p>
+        </div>
+        <div class="service-card">
+          <h3>🤖 Chatbot WhatsApp con IA</h3>
+          <p class="service-price">A medida</p>
+          <p>Atendé clientes 24/7 sin contratar a nadie. Respondé preguntas frecuentes, agendá citas, calificá leads automáticamente.</p>
+        </div>
+        <div class="service-card">
+          <h3>⚙️ Automatizaciones</h3>
+          <p class="service-price">A medida</p>
+          <p>Automatizá procesos repetitivos con Python. Facturación, envío de correos, generación de reportes — lo que necesités.</p>
+        </div>
+        <div class="service-card">
+          <h3>📄 Landing pages</h3>
+          <p class="service-price">Desde $250.000</p>
+          <p>Páginas de aterrizaje optimizadas para convertir visitantes en clientes. Ideal para campañas, lanzamientos y promociones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local-businesses">
+    <div class="container">
+      <h2>Negocios que atiendo en el área</h2>
+      <div class="biz-grid">
+        <div class="biz-card">
+          <span class="biz-icon">🍽️</span>
+          <h3>Restaurantes y cafés</h3>
+          <p>Menú digital, sistema de reservas, pedidos por WhatsApp.</p>
+        </div>
+        <div class="biz-card">
+          <span class="biz-icon">🏥</span>
+          <h3>Consultorios y profesionales</h3>
+          <p>Agenda online, chatbot para turnos, perfil profesional con SEO.</p>
+        </div>
+        <div class="biz-card">
+          <span class="biz-icon">🏪</span>
+          <h3>Comercios y tiendas</h3>
+          <p>Catálogo online, integración con WhatsApp Business, pedidos automatizados.</p>
+        </div>
+        <div class="biz-card">
+          <span class="biz-icon">🚀</span>
+          <h3>Emprendedores y startups</h3>
+          <p>Landing pages, MVPs web, automatizaciones para validar tu idea rápido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local-cta">
+    <div class="container">
+      <h2>¿Arrancamos?</h2>
+      <p>
+        Escribime al WhatsApp y contame qué necesitás. Sin compromiso, sin vueltas.
+        Si estamos cerca, coordinamos un café.
+      </p>
+      <a href="https://wa.me/573163000208" class="btn btn-primary" target="_blank" rel="noopener">
+        Escribime ahora
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Hero ── */
+  .local-hero {
+    padding: 140px 0 80px;
+    text-align: center;
+  }
+
+  .local-badge {
+    display: inline-block;
+    background: rgba(219, 71, 29, 0.15);
+    color: #db471d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .local-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+    max-width: 720px;
+    margin: 0 auto 16px;
+  }
+
+  .local-hero h1 span {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .local-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  /* ── Diferencial ── */
+  .local-diff {
+    padding: 80px 0;
+  }
+
+  .local-diff h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .diff-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .diff-icon {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .diff-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .diff-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ── Servicios ── */
+  .local-services {
+    padding: 80px 0;
+  }
+
+  .local-services h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .service-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .service-price {
+    color: #db471d;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .service-card > p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ── Tipos de negocio ── */
+  .local-businesses {
+    padding: 80px 0;
+  }
+
+  .local-businesses h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .biz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .biz-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+  }
+
+  .biz-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .biz-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .biz-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* ── CTA Final ── */
+  .local-cta {
+    padding: 80px 0 120px;
+    text-align: center;
+  }
+
+  .local-cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .local-cta p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .local-hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .diff-grid,
+    .services-grid,
+    .biz-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
