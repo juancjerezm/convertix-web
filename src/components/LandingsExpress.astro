@@ -15,8 +15,15 @@ import templates from '../data/templates.json'
       {
         templates.map((template) => (
           <article class="template-card">
-            <div class="template-image">
-              <img src={template.image} alt={template.name} class="template-preview" loading="lazy" onerror="this.style.display='none'" />
+            <div class="template-frame">
+              <div class="template-frame-bar">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div class="template-image">
+                <img src={template.image} alt={template.name} class="template-preview" loading="lazy" />
+              </div>
             </div>
             <h3 class="template-name">{template.name}</h3>
             <p class="template-description">{template.description}</p>
@@ -45,7 +52,6 @@ import templates from '../data/templates.json'
 <style>
   .landings-express {
     text-align: center;
-    background: var(--bg-secondary);
   }
 
   .landings-express .section-subtitle {
@@ -53,59 +59,49 @@ import templates from '../data/templates.json'
   }
 
   .landings-express .highlight {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
   }
 
   .templates-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
 
   .template-card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) + 4px);
-    padding: 40px 32px;
+    padding: 32px;
     text-align: left;
-    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-    position: relative;
+  }
+
+  .template-frame {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     overflow: hidden;
+    margin-bottom: 24px;
   }
 
-  .template-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient);
-    opacity: 0;
-    transition: opacity var(--transition);
+  .template-frame-bar {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--border);
   }
 
-  .template-card:hover {
-    border-color: var(--card-hover-border);
-    transform: translateY(-4px);
-    box-shadow: var(--card-hover-shadow);
-  }
-
-  .template-card:hover::before {
-    opacity: 1;
+  .template-frame-bar span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-strong);
   }
 
   .template-image {
-    width: 100%;
     aspect-ratio: 4 / 3;
-    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 24px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    background: var(--bg-3);
   }
 
   .template-preview {
@@ -117,7 +113,6 @@ import templates from '../data/templates.json'
 
   .template-name {
     font-size: 1.2rem;
-    font-weight: 700;
     margin-bottom: 12px;
   }
 

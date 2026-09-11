@@ -32,7 +32,6 @@
 <style>
   .about {
     text-align: center;
-    background: var(--bg-secondary);
   }
 
   .about-content {
@@ -61,16 +60,18 @@
 
   .stat-number {
     font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent-orange);
+    font-weight: 600;
+    color: var(--accent);
     font-variant-numeric: tabular-nums;
     line-height: 1.2;
   }
 
   .stat-label {
+    font-family: var(--font-mono);
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    margin-top: 6px;
   }
 
   @media (max-width: 768px) {
@@ -83,8 +84,15 @@
 
 <script>
   function animateCounter(el) {
-    const target = parseInt(el.dataset.count);
+    const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
+
+    // Reduced motion: show the final value immediately, no rAF loop.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = target + suffix;
+      return;
+    }
+
     const duration = 1800;
     let start = null;
 

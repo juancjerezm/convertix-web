@@ -1,11 +1,13 @@
 ---
+import '@fontsource-variable/inter'
+import '@fontsource-variable/space-grotesk'
+import '@fontsource-variable/jetbrains-mono'
 import '../styles/global.css'
+import Backdrop from '../components/Backdrop.astro'
+import Footer from '../components/Footer.astro'
+import Navbar from '../components/Navbar.astro'
 import SEO from '../components/SEO.astro'
 import StructuredData from '../components/StructuredData.astro'
-import Navbar from '../components/Navbar.astro'
-import Footer from '../components/Footer.astro'
-import ParticleConstellation from '../components/ParticleConstellation.astro'
-import DecorativeBlobs from '../components/DecorativeBlobs.astro'
 
 export interface Props {
   title?: string
@@ -27,9 +29,10 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Theme anti-flash: must run before first paint -->
+    <!-- Theme + JS capability flags: must run before first paint -->
     <script is:inline>
       (function() {
+        document.documentElement.classList.add('js');
         const saved = localStorage.getItem('theme');
         if (saved === 'light') {
           document.documentElement.setAttribute('data-theme', 'light');
@@ -38,11 +41,6 @@ const {
         }
       })();
     </script>
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -54,17 +52,8 @@ const {
   <body>
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
-    <!-- Ambient particle constellation (z-index: -1) -->
-    <ParticleConstellation />
-    <!-- Decorative background blobs (z-index: 0) -->
-    <DecorativeBlobs />
-    <!-- Grain texture filter -->
-    <svg style="display:none">
-      <filter id="grain">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-    </svg>
+    <!-- Static decorative backdrop (aria-hidden, no JS) -->
+    <Backdrop />
     <Navbar />
     <main>
       <slot />
@@ -88,8 +77,8 @@ const {
     top: 0;
     left: 0;
     width: 0%;
-    height: 3px;
-    background: var(--gradient);
+    height: 2px;
+    background: var(--accent);
     z-index: 10000;
     transition: width 50ms linear;
   }

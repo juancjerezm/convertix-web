@@ -41,10 +41,7 @@
   }
 
   .portfolio .highlight {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
   }
 
   .project-card {
@@ -53,10 +50,18 @@
     gap: 48px;
     align-items: center;
     text-align: left;
-    background: var(--bg-secondary);
+    background: var(--bg-2);
     border: 1px solid var(--border);
-    border-radius: calc(var(--radius) + 8px);
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    transition:
+      border-color var(--transition),
+      transform var(--transition);
+  }
+
+  .project-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
   }
 
   .project-screenshot {
@@ -78,7 +83,6 @@
 
   .project-name {
     font-size: 1.3rem;
-    font-weight: 700;
     margin-bottom: 16px;
   }
 
@@ -97,13 +101,15 @@
   }
 
   .tech-tag {
-    background: rgba(0, 112, 243, 0.1);
-    color: var(--accent-blue);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 112, 243, 0.2);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
   }
 
   .project-link {

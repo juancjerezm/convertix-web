@@ -76,7 +76,7 @@ test.describe('Phase 2: Core Reform', () => {
     expect(sectionOrder).toEqual(['servicios', 'ai', 'proceso'])
   })
 
-  test('2.3 ConvertixAI has 3 AI cards with purple theme', async ({ page }) => {
+  test('2.3 ConvertixAI has 3 AI cards', async ({ page }) => {
     await page.goto('/')
     await page.waitForSelector('#ai', { timeout: 10_000 })
 
@@ -132,17 +132,13 @@ test.describe('Phase 2: Core Reform', () => {
 
     // Verify all expected sections exist in correct order (id-based)
     const order = await page.evaluate(() => {
-      const selectors = [
-        '#servicios',
-        '#ai',
-        '#proceso',
-        '#plantillas',
-        '#contacto'
-      ]
-      return selectors.map((sel) => {
-        const el = document.querySelector(sel)
-        return el ? sel.replace('#', '') : null
-      }).filter(Boolean)
+      const selectors = ['#servicios', '#ai', '#proceso', '#plantillas', '#contacto']
+      return selectors
+        .map((sel) => {
+          const el = document.querySelector(sel)
+          return el ? sel.replace('#', '') : null
+        })
+        .filter(Boolean)
     })
     expect(order).toContain('ai')
     expect(order).toContain('plantillas')
@@ -236,7 +232,10 @@ test.describe('Phase 4: Visual Polish', () => {
         try {
           const rules = Array.from(sheet.cssRules || [])
           for (const rule of rules) {
-            if (rule instanceof CSSMediaRule && rule.conditionText?.includes('prefers-reduced-motion')) {
+            if (
+              rule instanceof CSSMediaRule &&
+              rule.conditionText?.includes('prefers-reduced-motion')
+            ) {
               const innerRules = Array.from(rule.cssRules || [])
               for (const inner of innerRules) {
                 if (inner instanceof CSSStyleRule && inner.selectorText?.includes(':active')) {
@@ -244,11 +243,17 @@ test.describe('Phase 4: Visual Polish', () => {
                 }
               }
             }
-            if (rule instanceof CSSStyleRule && rule.selectorText?.includes(':active') && rule.style.transform?.includes('scale(0.96)')) {
+            if (
+              rule instanceof CSSStyleRule &&
+              rule.selectorText?.includes(':active') &&
+              rule.style.transform?.includes('scale(0.96)')
+            ) {
               return true
             }
           }
-        } catch { /* cross-origin sheet */ }
+        } catch {
+          /* cross-origin sheet */
+        }
       }
       return false
     })
@@ -268,12 +273,17 @@ test.describe('Phase 4: Visual Polish', () => {
         try {
           const rules = Array.from(sheet.cssRules || [])
           for (const rule of rules) {
-            if (rule instanceof CSSStyleRule &&
-                (rule.selectorText?.includes('.price') || rule.selectorText?.includes('.template-price'))) {
+            if (
+              rule instanceof CSSStyleRule &&
+              (rule.selectorText?.includes('.price') ||
+                rule.selectorText?.includes('.template-price'))
+            ) {
               if (rule.style.fontVariantNumeric === 'tabular-nums') return true
             }
           }
-        } catch { /* cross-origin */ }
+        } catch {
+          /* cross-origin */
+        }
       }
       return false
     })
@@ -351,9 +361,7 @@ test.describe('Phase 4: Visual Polish', () => {
     await page.waitForSelector('#ai', { timeout: 10_000 })
     await page.waitForSelector('#contacto', { timeout: 10_000 })
 
-    const results = await new AxeBuilder({ page })
-      .disableRules(['heading-order'])
-      .analyze()
+    const results = await new AxeBuilder({ page }).disableRules(['heading-order']).analyze()
 
     expect(results.violations).toEqual([])
   })

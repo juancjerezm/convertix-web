@@ -1,0 +1,40 @@
+---
+// Static decorative backdrop: hairline grid + a single warm glow.
+// No JS, no canvas, no animated blobs — pure CSS.
+---
+
+<div class="backdrop" aria-hidden="true">
+  <div class="backdrop-grid"></div>
+  <div class="backdrop-glow"></div>
+</div>
+
+<style is:global>
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .backdrop-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000, transparent 75%);
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000, transparent 75%);
+  }
+
+  .backdrop-glow {
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1100px, 90vw);
+    height: 620px;
+    background: var(--glow);
+  }
+</style>

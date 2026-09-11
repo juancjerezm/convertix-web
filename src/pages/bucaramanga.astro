@@ -2,14 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 const title = 'Desarrollo Web en Bucaramanga | Convertix Web'
-const description = 'Páginas web, chatbots con IA y automatizaciones para negocios en Bucaramanga, Floridablanca, Piedecuesta y Girón. Trato directo con el desarrollador, sin agencia.'
+const description =
+  'Páginas web, chatbots con IA y automatizaciones para negocios en Bucaramanga, Floridablanca, Piedecuesta y Girón. Trato directo con el desarrollador, sin agencia.'
 const url = 'https://convertixweb.app/bucaramanga/'
 ---
 
 <BaseLayout title={title} description={description} url={url}>
   <section class="local-hero">
     <div class="container">
-      <span class="local-badge">📍 Área Metropolitana de Bucaramanga</span>
+      <span class="local-badge">Área Metropolitana de Bucaramanga</span>
       <h1>Desarrollo web en Bucaramanga <span>— directo con el desarrollador</span></h1>
       <p class="local-sub">
         Páginas web, chatbots con IA y automatizaciones para negocios de Bucaramanga,
@@ -23,7 +24,7 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   <section class="local-diff">
     <div class="container">
-      <h2>¿Por qué un desarrollador local?</h2>
+      <h2 class="section-title">¿Por qué un desarrollador local?</h2>
       <div class="diff-grid">
         <div class="diff-card">
           <div class="diff-icon">🗣️</div>
@@ -63,7 +64,7 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   <section class="local-services">
     <div class="container">
-      <h2>Servicios</h2>
+      <h2 class="section-title">Servicios</h2>
       <div class="services-grid">
         <div class="service-card">
           <h3>🖥️ Páginas web</h3>
@@ -91,25 +92,21 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   <section class="local-businesses">
     <div class="container">
-      <h2>Negocios que atiendo en el área</h2>
+      <h2 class="section-title">Negocios que atiendo en el área</h2>
       <div class="biz-grid">
         <div class="biz-card">
-          <span class="biz-icon">🍽️</span>
           <h3>Restaurantes y cafés</h3>
           <p>Menú digital, sistema de reservas, pedidos por WhatsApp.</p>
         </div>
         <div class="biz-card">
-          <span class="biz-icon">🏥</span>
           <h3>Consultorios y profesionales</h3>
           <p>Agenda online, chatbot para turnos, perfil profesional con SEO.</p>
         </div>
         <div class="biz-card">
-          <span class="biz-icon">🏪</span>
           <h3>Comercios y tiendas</h3>
           <p>Catálogo online, integración con WhatsApp Business, pedidos automatizados.</p>
         </div>
         <div class="biz-card">
-          <span class="biz-icon">🚀</span>
           <h3>Emprendedores y startups</h3>
           <p>Landing pages, MVPs web, automatizaciones para validar tu idea rápido.</p>
         </div>
@@ -119,7 +116,7 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   <section class="local-cta">
     <div class="container">
-      <h2>¿Arrancamos?</h2>
+      <h2 class="section-title">¿Arrancamos?</h2>
       <p>
         Escribime al WhatsApp y contame qué necesitás. Sin compromiso, sin vueltas.
         Si estamos cerca, coordinamos un café.
@@ -140,19 +137,23 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   .local-badge {
     display: inline-block;
-    background: rgba(219, 71, 29, 0.15);
-    color: #db471d;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    font-weight: 500;
     padding: 6px 16px;
-    border-radius: 20px;
+    border-radius: 999px;
     margin-bottom: 24px;
   }
 
   .local-hero h1 {
     font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
     max-width: 720px;
     margin: 0 auto 16px;
   }
@@ -175,9 +176,9 @@ const url = 'https://convertixweb.app/bucaramanga/'
     padding: 80px 0;
   }
 
-  .local-diff h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
+  .local-diff h2,
+  .local-services h2,
+  .local-businesses h2 {
     text-align: center;
     margin-bottom: 48px;
   }
@@ -191,9 +192,9 @@ const url = 'https://convertixweb.app/bucaramanga/'
   }
 
   .diff-card {
-    background: var(--card-bg);
+    background: var(--bg-2);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 28px;
   }
 
@@ -204,7 +205,7 @@ const url = 'https://convertixweb.app/bucaramanga/'
 
   .diff-card h3 {
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 8px;
   }
 
@@ -219,13 +220,6 @@ const url = 'https://convertixweb.app/bucaramanga/'
     padding: 80px 0;
   }
 
-  .local-services h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -235,22 +229,23 @@ const url = 'https://convertixweb.app/bucaramanga/'
   }
 
   .service-card {
-    background: var(--card-bg);
+    background: var(--bg-2);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 28px;
   }
 
   .service-card h3 {
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 4px;
   }
 
-  .service-price {
-    color: #db471d;
+  .service-card .service-price {
+    color: var(--accent);
     font-weight: 600;
     font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
     margin-bottom: 12px;
   }
 
@@ -265,13 +260,6 @@ const url = 'https://convertixweb.app/bucaramanga/'
     padding: 80px 0;
   }
 
-  .local-businesses h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
   .biz-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -281,22 +269,16 @@ const url = 'https://convertixweb.app/bucaramanga/'
   }
 
   .biz-card {
-    background: var(--card-bg);
+    background: var(--bg-2);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 28px;
     text-align: center;
   }
 
-  .biz-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 12px;
-  }
-
   .biz-card h3 {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 8px;
   }
 
@@ -313,8 +295,7 @@ const url = 'https://convertixweb.app/bucaramanga/'
   }
 
   .local-cta h2 {
-    font-size: 2rem;
-    font-weight: 800;
+    text-align: center;
     margin-bottom: 12px;
   }
 

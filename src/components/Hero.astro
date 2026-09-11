@@ -1,18 +1,45 @@
-<section class="hero reveal">
-  <div class="container">
+<!-- Hero renders at full opacity: no .reveal class so the above-the-fold
+     content (and axe contrast scans) never run mid-transition. -->
+<section class="hero">
+  <div class="container hero-inner">
     <div class="hero-content">
+      <p class="hero-kicker">Desarrollo web + IA · Colombia</p>
       <h1>
         Tu página web lista en <span class="highlight-orange">3</span> <span class="highlight">días</span>.<br>
         Y productos con <span class="highlight">IA</span> para tu negocio.
       </h1>
-      <p>
+      <p class="hero-lead">
         Desarrollo web profesional, chatbots inteligentes y automatizaciones. Sin agencia, sin vueltas: hablás directo con el que hace.
       </p>
       <div class="hero-buttons">
-        <a href="#contacto" class="btn btn-primary fade-in-delay-1 fade-in">Quiero mi web</a>
-        <a href="#plantillas" class="btn btn-outline fade-in-delay-2 fade-in">Ver plantillas</a>
+        <a href="#contacto" class="btn btn-primary">Quiero mi web</a>
+        <a href="#plantillas" class="btn btn-outline">Ver plantillas</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="mock-window">
+        <div class="mock-window-bar">
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+        </div>
+        <div class="mock-window-body">
+          <p><span class="mock-prompt">$</span> pnpm build</p>
+          <p class="mock-ok">✓ build completado</p>
+          <p><span class="mock-prompt">$</span> convertix deploy</p>
+          <p class="mock-ok">✓ tu-negocio.com</p>
+        </div>
+      </div>
+
+      <div class="mock-chat">
+        <div class="mock-chat-head">
+          <span class="mock-chat-dot"></span>
+          Convertix AI
+        </div>
+        <p class="mock-bubble mock-bubble-in">Hola, ¿cuánto vale una página para mi negocio?</p>
+        <p class="mock-bubble mock-bubble-out">Te paso una propuesta hoy mismo. ¿Seguimos por acá?</p>
       </div>
     </div>
   </div>
 </section>
-
