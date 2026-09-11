@@ -22,6 +22,7 @@ Thumbs.db
 # Tool-generated config
 .atl/
 .astro/settings.json
+.codegraph/
 
 # Test artifacts
 tests/screenshots/

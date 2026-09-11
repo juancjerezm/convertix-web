@@ -6,6 +6,7 @@
     "icon": "🚀",
     "price": "$550.000",
     "image": "/templates/landing.webp",
+    "imageFull": "/templates/landing-full.webp",
     "demoUrl": "/demos/landing"
   },
   {
@@ -15,6 +16,7 @@
     "icon": "💼",
     "price": "$650.000",
     "image": "/templates/profesional.webp",
+    "imageFull": "/templates/profesional-full.webp",
     "demoUrl": "/demos/profesional"
   },
   {
@@ -24,6 +26,7 @@
     "icon": "🏪",
     "price": "$750.000",
     "image": "/templates/negocio-local.webp",
+    "imageFull": "/templates/negocio-local-full.webp",
     "demoUrl": "/demos/negocio-local"
   },
   {
@@ -33,6 +36,7 @@
     "icon": "📝",
     "price": "$800.000",
     "image": "/templates/blog.webp",
+    "imageFull": "/templates/blog-full.webp",
     "demoUrl": "/demos/blog"
   }
 ]
