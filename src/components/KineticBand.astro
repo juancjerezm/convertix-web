@@ -1,0 +1,126 @@
+---
+// Decorative kinetic band ("Banda Ignition"): a CSS-only marquee strip.
+// No JavaScript, no canvas, no particles. The animation is pure CSS keyframes
+// so it keeps running with JS disabled, and it stops under
+// prefers-reduced-motion: reduce. The repeated track is decorative, so it is
+// aria-hidden to keep screen readers out of a moving reading loop.
+const phrases = [
+  'PÁGINAS WEB EN 3 DÍAS',
+  'HERRAMIENTAS CON IA',
+  'AUTOMATIZACIÓN CON IA',
+  'PÁGINAS EXPRESS',
+  'SEO LOCAL',
+  'SIN AGENCIA, SIN VUELTAS'
+]
+---
+
+<div class="kinetic-band">
+  <div class="kinetic-band-track" aria-hidden="true">
+    <div class="kinetic-band-group">
+      {
+        phrases.map((phrase) => (
+          <span class="kinetic-band-item">
+            <span class="kinetic-band-mark">✦</span>
+            {phrase}
+          </span>
+        ))
+      }
+    </div>
+    <div class="kinetic-band-group" data-dup>
+      {
+        phrases.map((phrase) => (
+          <span class="kinetic-band-item">
+            <span class="kinetic-band-mark">✦</span>
+            {phrase}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Full-bleed strip: thin borders, no background fill. `overflow: clip`
+     keeps the wide track from creating a horizontal scrollbar without
+     turning the band into a keyboard-scrollable region. */
+  .kinetic-band {
+    position: relative;
+    overflow: hidden;
+    overflow: clip;
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* The track holds the full sequence twice with no gap between groups, so
+     translating exactly -50% lands the second copy where the first started
+     and the loop is seamless. Each item carries its own spacing padding so
+     the two halves are geometrically identical. */
+  .kinetic-band-track {
+    display: flex;
+    width: max-content;
+    animation: kinetic-marquee 22s linear infinite;
+  }
+
+  .kinetic-band-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  .kinetic-band-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 28px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .kinetic-band-mark {
+    color: var(--accent);
+    font-size: 0.9em;
+  }
+
+  @keyframes kinetic-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause on hover only on devices that actually have a pointer. */
+  @media (hover: hover) {
+    .kinetic-band:hover .kinetic-band-track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Reduced motion: no animation at all. Hide the duplicate group and let
+     the first one wrap and center so the strip stays legible with no
+     overflow. */
+  @media (prefers-reduced-motion: reduce) {
+    .kinetic-band-track {
+      animation: none;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .kinetic-band-group {
+      flex: 1 1 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .kinetic-band-group[data-dup] {
+      display: none;
+    }
+  }
+</style>
