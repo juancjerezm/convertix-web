@@ -1,3 +1,4 @@
+<script is:inline>document.documentElement.classList.add('has-js')</script>
 <!-- Hero renders at full opacity: no .reveal class so the above-the-fold
      content (and axe contrast scans) never run mid-transition. -->
 <section class="hero">
@@ -25,9 +26,9 @@
           <span class="mock-dot"></span>
         </div>
         <div class="mock-window-body">
-          <p><span class="mock-prompt">$</span> pnpm build</p>
+          <p><span class="mock-prompt">$</span> <span class="type-text">pnpm build</span><span class="caret"></span></p>
           <p class="mock-ok">✓ build completado</p>
-          <p><span class="mock-prompt">$</span> convertix deploy</p>
+          <p><span class="mock-prompt">$</span> <span class="type-text">convertix deploy</span><span class="caret"></span></p>
           <p class="mock-ok">✓ tu-negocio.com</p>
         </div>
       </div>
@@ -39,7 +40,322 @@
         </div>
         <p class="mock-bubble mock-bubble-in">Hola, ¿cuánto vale una página para mi negocio?</p>
         <p class="mock-bubble mock-bubble-out">Te paso una propuesta hoy mismo. ¿Seguimos por acá?</p>
+        <div class="mock-typing">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* ============================================
+     HERO LIVE SEQUENCE — progressive enhancement.
+     The final frame is the default state; the
+     rules below only hide or animate when JS is
+     active AND reduced motion is not requested.
+     ============================================ */
+
+  .hero h1 .highlight-orange {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+  }
+
+  /* Radial ignition glow, painted behind the glyph. */
+  .hero h1 .highlight-orange::before {
+    content: "";
+    position: absolute;
+    inset: -55% -45%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent-soft), transparent 78%);
+    opacity: 0;
+    transform: scale(0.55);
+    pointer-events: none;
+  }
+
+  .caret {
+    display: none;
+    width: 0.55em;
+    height: 1.05em;
+    border-radius: 1px;
+    background: var(--accent);
+  }
+
+  .mock-typing {
+    display: none;
+    width: fit-content;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border-top-left-radius: 2px;
+    background: var(--bg-3);
+  }
+
+  .mock-typing span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.35;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html.has-js .type-text {
+      visibility: hidden;
+    }
+
+    html.has-js .type-text.is-live {
+      visibility: visible;
+    }
+
+    html.has-js .caret {
+      display: inline-block;
+      margin-left: 2px;
+      vertical-align: -0.18em;
+      visibility: hidden;
+    }
+
+    html.has-js .caret.is-on {
+      visibility: visible;
+      animation: hero-caret-blink 1s steps(1, end) infinite;
+    }
+
+    html.has-js .mock-ok {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px) scale(0.985);
+      transition:
+        opacity var(--transition),
+        transform var(--transition);
+    }
+
+    html.has-js .mock-bubble {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition:
+        opacity 200ms cubic-bezier(0.2, 0.6, 0.2, 1),
+        transform 200ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+
+    html.has-js .mock-ok.is-in,
+    html.has-js .mock-bubble.is-in {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    html.has-js .mock-typing {
+      display: inline-flex;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    html.has-js .mock-typing.is-typing {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    html.has-js .mock-typing.is-typing span {
+      animation: hero-typing-dot 600ms ease-in-out infinite;
+    }
+
+    html.has-js .mock-typing.is-typing span:nth-child(2) {
+      animation-delay: 150ms;
+    }
+
+    html.has-js .mock-typing.is-typing span:nth-child(3) {
+      animation-delay: 300ms;
+    }
+
+    .hero h1 .highlight-orange.is-igniting {
+      animation: hero-ignite 450ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+
+    .hero h1 .highlight-orange.is-igniting::before {
+      animation: hero-ignite-glow 650ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+
+    @keyframes hero-caret-blink {
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes hero-typing-dot {
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+    }
+
+    @keyframes hero-ignite {
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.06);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes hero-ignite-glow {
+      0% {
+        opacity: 0;
+        transform: scale(0.55);
+      }
+
+      35% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.5);
+      }
+    }
+  }
+</style>
+
+<script>
+  const TYPE_SPEED = 45
+  const FAILSAFE_MS = 6000
+
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+  const onDomReady = () =>
+    document.readyState === 'loading'
+      ? new Promise((resolve) => {
+          document.addEventListener('DOMContentLoaded', () => resolve(), { once: true })
+        })
+      : Promise.resolve()
+
+  function forceFinalFrame(visual) {
+    visual.querySelectorAll('.type-text').forEach((el) => {
+      if (el.dataset.fullText !== undefined) el.textContent = el.dataset.fullText
+      el.classList.add('is-live')
+    })
+    visual.querySelectorAll('.mock-ok, .mock-bubble').forEach((el) => el.classList.add('is-in'))
+    visual.querySelectorAll('.mock-typing').forEach((el) => el.classList.remove('is-typing'))
+    visual.querySelectorAll('.caret').forEach((el) => el.classList.remove('is-on'))
+    document.querySelector('.hero h1 .highlight-orange')?.classList.remove('is-igniting')
+    document.documentElement.dataset.heroSeq = 'done'
+  }
+
+  async function typeText(el, caret, isAborted) {
+    const text = el.dataset.fullText ?? ''
+    el.textContent = ''
+    el.classList.add('is-live')
+    caret?.classList.add('is-on')
+
+    for (const char of text) {
+      if (isAborted()) return
+      el.textContent += char
+      await wait(TYPE_SPEED)
+    }
+
+    caret?.classList.remove('is-on')
+  }
+
+  async function runSequence(visual, isAborted) {
+    const commands = visual.querySelectorAll('.type-text')
+    const [build, deploy] = commands
+    const [buildCaret, deployCaret] = visual.querySelectorAll('.caret')
+    const okLines = visual.querySelectorAll('.mock-ok')
+    const typing = visual.querySelector('.mock-typing')
+    const bubbleIn = visual.querySelector('.mock-bubble-in')
+    const bubbleOut = visual.querySelector('.mock-bubble-out')
+    const number = document.querySelector('.hero h1 .highlight-orange')
+
+    commands.forEach((el) => {
+      el.dataset.fullText = (el.textContent ?? '').trim()
+      el.textContent = ''
+    })
+
+    // One-shot ignition on the H1's "3", concurrent with the terminal.
+    const ignition = (async () => {
+      await wait(600)
+      number?.classList.add('is-igniting')
+      await wait(700)
+      number?.classList.remove('is-igniting')
+    })()
+
+    // Chat replies pop in while the terminal keeps typing.
+    const chat = (async () => {
+      await wait(1000)
+      typing?.classList.add('is-typing')
+      await wait(700)
+      typing?.classList.remove('is-typing')
+      bubbleIn?.classList.add('is-in')
+      await wait(300)
+      typing?.classList.add('is-typing')
+      await wait(600)
+      typing?.classList.remove('is-typing')
+      bubbleOut?.classList.add('is-in')
+      await wait(250)
+    })()
+
+    await typeText(build, buildCaret, isAborted)
+    await wait(250)
+    okLines[0]?.classList.add('is-in')
+    await wait(350)
+    await typeText(deploy, deployCaret, isAborted)
+    await wait(250)
+    okLines[1]?.classList.add('is-in')
+
+    await Promise.all([ignition, chat])
+  }
+
+  async function initHeroSequence() {
+    await onDomReady()
+
+    const visual = document.querySelector('.hero-visual')
+    if (!visual) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let finished = false
+    const isAborted = () => finished
+
+    // Failsafe: any error or stall forces the final frame after ~6s.
+    const failsafe = window.setTimeout(() => {
+      if (finished) return
+      finished = true
+      forceFinalFrame(visual)
+    }, FAILSAFE_MS)
+
+    try {
+      const fontsReady = document.fonts?.ready ?? Promise.resolve()
+      await Promise.race([fontsReady, wait(400)])
+      await runSequence(visual, isAborted)
+    } catch {
+      // Fall through to the forced final frame below.
+    } finally {
+      finished = true
+      window.clearTimeout(failsafe)
+      forceFinalFrame(visual)
+    }
+  }
+
+  initHeroSequence()
+</script>
