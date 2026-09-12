@@ -10,7 +10,7 @@
         Y productos con <span class="highlight">IA</span> para tu negocio.
       </h1>
       <p class="hero-lead">
-        Desarrollo web profesional, chatbots inteligentes y automatizaciones. Sin agencia, sin vueltas: hablás directo con el que hace.
+        Desarrollo web profesional, automatizaciones y herramientas conectadas a IA. Sin agencia, sin vueltas: hablás directo con el que hace.
       </p>
       <div class="hero-buttons">
         <a href="#contacto" class="btn btn-primary">Quiero mi web</a>
@@ -33,13 +33,14 @@
         </div>
       </div>
 
-      <div class="mock-chat">
-        <div class="mock-chat-head">
-          <span class="mock-chat-dot"></span>
-          Convertix AI
+      <div class="mock-tool">
+        <div class="mock-tool-head">
+          <span class="mock-tool-dot"></span>
+          Automatización · IA
         </div>
-        <p class="mock-bubble mock-bubble-in">Hola, ¿cuánto vale una página para mi negocio?</p>
-        <p class="mock-bubble mock-bubble-out">Te paso una propuesta hoy mismo. ¿Seguimos por acá?</p>
+        <p class="mock-row mock-row-file">factura-1042.pdf</p>
+        <p class="mock-row mock-row-ok">✓ datos extraídos</p>
+        <p class="mock-row mock-row-ok">✓ registrada en tu sistema</p>
         <div class="mock-typing">
           <span></span>
           <span></span>
@@ -134,7 +135,7 @@
         transform var(--transition);
     }
 
-    html.has-js .mock-bubble {
+    html.has-js .mock-row {
       opacity: 0;
       visibility: hidden;
       transform: translateY(6px);
@@ -144,7 +145,7 @@
     }
 
     html.has-js .mock-ok.is-in,
-    html.has-js .mock-bubble.is-in {
+    html.has-js .mock-row.is-in {
       opacity: 1;
       visibility: visible;
       transform: none;
@@ -256,7 +257,7 @@
       if (el.dataset.fullText !== undefined) el.textContent = el.dataset.fullText
       el.classList.add('is-live')
     })
-    visual.querySelectorAll('.mock-ok, .mock-bubble').forEach((el) => el.classList.add('is-in'))
+    visual.querySelectorAll('.mock-ok, .mock-row').forEach((el) => el.classList.add('is-in'))
     visual.querySelectorAll('.mock-typing').forEach((el) => el.classList.remove('is-typing'))
     visual.querySelectorAll('.caret').forEach((el) => el.classList.remove('is-on'))
     document.querySelector('.hero h1 .highlight-orange')?.classList.remove('is-igniting')
@@ -284,8 +285,8 @@
     const [buildCaret, deployCaret] = visual.querySelectorAll('.caret')
     const okLines = visual.querySelectorAll('.mock-ok')
     const typing = visual.querySelector('.mock-typing')
-    const bubbleIn = visual.querySelector('.mock-bubble-in')
-    const bubbleOut = visual.querySelector('.mock-bubble-out')
+    const fileRow = visual.querySelector('.mock-row-file')
+    const okRows = visual.querySelectorAll('.mock-row-ok')
     const number = document.querySelector('.hero h1 .highlight-orange')
 
     commands.forEach((el) => {
@@ -301,18 +302,20 @@
       number?.classList.remove('is-igniting')
     })()
 
-    // Chat replies pop in while the terminal keeps typing.
-    const chat = (async () => {
+    // Document rows pop in while the terminal keeps typing.
+    const tool = (async () => {
       await wait(1000)
       typing?.classList.add('is-typing')
       await wait(700)
       typing?.classList.remove('is-typing')
-      bubbleIn?.classList.add('is-in')
+      fileRow?.classList.add('is-in')
       await wait(300)
       typing?.classList.add('is-typing')
       await wait(600)
       typing?.classList.remove('is-typing')
-      bubbleOut?.classList.add('is-in')
+      okRows[0]?.classList.add('is-in')
+      await wait(250)
+      okRows[1]?.classList.add('is-in')
       await wait(250)
     })()
 
@@ -324,7 +327,7 @@
     await wait(250)
     okLines[1]?.classList.add('is-in')
 
-    await Promise.all([ignition, chat])
+    await Promise.all([ignition, tool])
   }
 
   async function initHeroSequence() {

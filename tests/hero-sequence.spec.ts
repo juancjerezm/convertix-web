@@ -2,16 +2,17 @@ import { expect, test } from '@playwright/test'
 
 /* ==========================================================================
    Hero live sequence — progressive enhancement contract.
-   With JS and motion allowed, the mock terminal types itself and the chat
-   replies pop in. Without JS, or under prefers-reduced-motion: reduce, the
-   final frame is painted immediately (and any JS failure settles it < 7s).
+   With JS and motion allowed, the mock terminal types itself and the
+   document automation rows pop in. Without JS, or under
+   prefers-reduced-motion: reduce, the final frame is painted immediately
+   (and any JS failure settles it < 7s).
    ========================================================================== */
 
 function finalStateProbe() {
   const oks = document.querySelectorAll('.mock-window-body .mock-ok')
   const lastOk = oks[oks.length - 1] ?? null
-  const bubbleIn = document.querySelector('.mock-bubble-in')
-  const bubbleOut = document.querySelector('.mock-bubble-out')
+  const fileRow = document.querySelector('.mock-row-file')
+  const okRows = document.querySelectorAll('.mock-row-ok')
   const number = document.querySelector('.hero h1 .highlight-orange')
   const caret = document.querySelector('.caret')
   const commands = document.querySelectorAll('.mock-window-body .type-text')
@@ -29,8 +30,10 @@ function finalStateProbe() {
   return {
     lastOkText: lastOk?.textContent?.trim() ?? '',
     lastOkShown: shown(lastOk),
-    bubbleInShown: shown(bubbleIn),
-    bubbleOutShown: shown(bubbleOut),
+    fileRowText: fileRow?.textContent?.trim() ?? '',
+    fileRowShown: shown(fileRow),
+    okRowsText: Array.from(okRows).map((el) => el.textContent?.trim() ?? ''),
+    okRowsShown: Array.from(okRows).every((el) => shown(el)),
     numberShown: shown(number),
     commands: Array.from(commands).map((el) => el.textContent?.trim() ?? ''),
     caretAnimation: caret ? getComputedStyle(caret).animationName : 'none'
@@ -40,8 +43,10 @@ function finalStateProbe() {
 const finalFrame = () => ({
   lastOkText: expect.stringContaining('tu-negocio.com'),
   lastOkShown: true,
-  bubbleInShown: true,
-  bubbleOutShown: true,
+  fileRowText: 'factura-1042.pdf',
+  fileRowShown: true,
+  okRowsText: ['✓ datos extraídos', '✓ registrada en tu sistema'],
+  okRowsShown: true,
   numberShown: true,
   commands: ['pnpm build', 'convertix deploy'],
   caretAnimation: 'none'
@@ -51,8 +56,8 @@ test.describe('hero live sequence', () => {
   test('1. with JS the sequence reaches the final frame within ~7s', async ({ page }) => {
     await page.goto('/')
 
-    // Gated start: the last reply is hidden until the sequence pops it in.
-    await expect(page.locator('.mock-bubble-out')).toBeHidden()
+    // Gated start: the last confirmation row is hidden until the sequence pops it in.
+    await expect(page.locator('.mock-row-ok').last()).toBeHidden()
 
     await expect
       .poll(async () => page.evaluate(finalStateProbe), {
@@ -84,8 +89,10 @@ test.describe('hero live sequence', () => {
         .toEqual(finalFrame())
 
       await expect(page.locator('.mock-window-body .mock-ok').last()).toBeVisible()
-      await expect(page.locator('.mock-bubble-in')).toBeVisible()
-      await expect(page.locator('.mock-bubble-out')).toBeVisible()
+      await expect(page.locator('.mock-row-file')).toBeVisible()
+      await expect(page.locator('.mock-row-ok')).toHaveCount(2)
+      await expect(page.locator('.mock-row-ok').first()).toBeVisible()
+      await expect(page.locator('.mock-row-ok').last()).toBeVisible()
     })
   })
 })

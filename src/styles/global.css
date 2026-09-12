@@ -547,7 +547,7 @@ body.menu-open {
   flex-wrap: wrap;
 }
 
-/* Hero visual — pure CSS mock of a build log + WhatsApp chat */
+/* Hero visual — pure CSS mock of a build log + AI document automation tool */
 .hero-visual {
   position: relative;
   font-size: 0.8rem;
@@ -592,7 +592,7 @@ body.menu-open {
   color: var(--text);
 }
 
-.mock-chat {
+.mock-tool {
   position: absolute;
   right: -16px;
   bottom: -32px;
@@ -603,7 +603,7 @@ body.menu-open {
   border-radius: var(--radius-lg);
 }
 
-.mock-chat-head {
+.mock-tool-head {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -613,27 +613,27 @@ body.menu-open {
   margin-bottom: 12px;
 }
 
-.mock-chat-dot {
+.mock-tool-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--success);
 }
 
-.mock-bubble {
+.mock-row {
   font-size: 0.8rem;
   line-height: 1.5;
   padding: 10px 12px;
   border-radius: 10px;
 }
 
-.mock-bubble-in {
+.mock-row-file {
   background: var(--bg-3);
   color: var(--text-muted);
   border-top-left-radius: 2px;
 }
 
-.mock-bubble-out {
+.mock-row-ok {
   margin-top: 8px;
   margin-left: 24px;
   background: var(--accent-soft);

@@ -84,7 +84,7 @@ test.describe('Phase 2: Core Reform', () => {
     await expect(cards).toHaveCount(3)
 
     // Verify cards contain expected headings
-    await expect(page.locator('#ai')).toContainText('Chatbot WhatsApp con IA')
+    await expect(page.locator('#ai')).toContainText('Integraciones con IA')
     await expect(page.locator('#ai')).toContainText('Automatizaciones Python')
     await expect(page.locator('#ai')).toContainText('Consultoría en Automatización')
   })
@@ -160,7 +160,7 @@ test.describe('Phase 3: SEO', () => {
 
     const content = await keywordsMeta.getAttribute('content')
     expect(content).toContain('página web Colombia')
-    expect(content).toContain('chatbot WhatsApp Colombia')
+    expect(content).toContain('herramientas con IA Colombia')
     expect(content).toContain('automatización Colombia')
     expect(content).toContain('IA para negocios')
   })
@@ -175,7 +175,7 @@ test.describe('Phase 3: SEO', () => {
     const parsed = JSON.parse(jsonText!)
     expect(parsed.knowsAbout).toEqual(
       expect.arrayContaining([
-        'chatbot WhatsApp Colombia',
+        'herramientas con IA',
         'automatización Python',
         'consultoría IA',
         'página web Colombia'
@@ -194,7 +194,8 @@ test.describe('Phase 3: SEO', () => {
     const descMeta = page.locator('meta[name="description"]')
     const desc = await descMeta.getAttribute('content')
     expect(desc).toContain('Colombia')
-    expect(desc).toContain('chatbots')
+    expect(desc).toContain('automatizaciones')
+    expect(desc).toContain('IA')
   })
 })
 
