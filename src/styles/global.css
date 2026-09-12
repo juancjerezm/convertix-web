@@ -183,6 +183,52 @@ p {
   letter-spacing: -0.025em;
   line-height: 1.15;
   margin-bottom: 20px;
+  /* Optical trimming: drop the font's half-leading above cap height and
+     below the baseline so the title hugs the section label. */
+  text-box: trim-both cap alphabetic;
+}
+
+/* ============================================
+   TITLE IGNITION — scroll-driven weight scrub
+   ============================================
+   Section titles "ignite" as they enter the viewport: the wght axis of
+   Space Grotesk Variable (300-700) is scrubbed from an unlit 310 to the
+   default lit 600 with a view() timeline — pure CSS, reversible. Without
+   animation-timeline support the base h1-h4 rule paints a static 600, and
+   the final keyframe matches that weight exactly, so there is no jump. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .section-title {
+      animation: title-ignite linear both;
+      /* Must come after the animation shorthand, which resets it to auto. */
+      animation-timeline: view(block);
+      /* Unlit just as the title enters; fully lit around the middle of the
+         viewport, so a title is never thin while it is being read. */
+      animation-range: entry 5% cover 45%;
+      /* Guard: if animation-timeline parses but never attaches, the 1ms
+         time-based fallback finishes on the lit 600 instead of freezing
+         mid-scrub. Progress-based timelines ignore this duration. */
+      animation-duration: 1ms;
+    }
+  }
+}
+
+@keyframes title-ignite {
+  from {
+    font-variation-settings: "wght" 310;
+  }
+
+  to {
+    font-variation-settings: "wght" 600;
+  }
+}
+
+/* Static lit title, fully legible. */
+@media (prefers-reduced-motion: reduce) {
+  .section-title {
+    animation: none;
+  }
 }
 
 .section-subtitle {
