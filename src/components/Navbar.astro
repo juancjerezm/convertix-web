@@ -102,12 +102,24 @@
 
     updateThemeToggleLabel();
 
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
+    const applyTheme = (next) => {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateThemeToggleLabel();
+    };
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Cross-fade the whole page on theme swap when the browser supports
+      // View Transitions and motion is allowed; otherwise mutate directly.
+      if (typeof document.startViewTransition === 'function' && !reduceMotion) {
+        document.startViewTransition(() => applyTheme(next));
+      } else {
+        applyTheme(next);
+      }
     });
   }
 </script>

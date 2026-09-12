@@ -794,7 +794,6 @@ body.menu-open {
   font-size: 0.8rem;
   margin-top: 16px;
   margin-bottom: 0;
-  opacity: 0.7;
 }
 
 /* ============================================
@@ -903,33 +902,135 @@ body.menu-open {
 }
 
 /* ============================================
-   SCROLL REVEAL
-   Visible by default; only hidden once the
-   inline anti-flash script marks <html> as .js.
-   ============================================ */
-.reveal {
-  opacity: 1;
-  transform: none;
+   CRAFT REVEAL — scroll-driven veil draw
+   ============================================
+   Small and medium content blocks emerge from a soft-edged veil as they
+   enter the viewport and re-veil when scrolling back up, driven by a
+   scrubbed view() timeline — pure CSS, no JS.
+
+   The veil is a gradient mask three times the block height (h) whose black
+   cap slides over the block as the scrub advances: with mask-position Y the
+   block window sits at [2h·Y/100, h + 2h·Y/100] in mask coordinates, so
+   Y = 100% hides it behind the transparent region and Y = 0% leaves it
+   inside the black cap. The visible edge is the 48% -> 52% band of the
+   mask (a feather of ~6% of h) and it crosses the block between roughly
+   cover 39% and cover 51% of the range below — while the block is on
+   screen. This is why the draw is retargeted from whole sections to inner
+   blocks: a section taller than the viewport never showed a moving edge on
+   screen.
+
+   Masks are paint-only: unlike the previous clip-path wipe they leave hit
+   testing and IntersectionObserver untouched, so hover states work and
+   lazy images inside a veiled block keep loading.
+
+   Progressive enhancement: without animation-timeline support, with
+   JavaScript disabled, or under prefers-reduced-motion: reduce, the blocks
+   paint fully visible with no mask. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Curated inner blocks. Deliberately excluded: .section-title (owned by
+       the title-ignition scrub), the hero mocks, and ProcessTimeline's
+       trajectory fill/spark/badges (they share the --trajectory timeline). */
+    .reveal .section-label,
+    .reveal .section-subtitle,
+    .reveal .feature-card,
+    .reveal .ai-card,
+    .reveal .ai-cta,
+    .reveal .template-card,
+    .reveal .project-card,
+    .reveal .faq-item,
+    .reveal .about-text,
+    .reveal .about-stats,
+    .reveal .cta-card,
+    .reveal .pricing-card {
+      /* Soft-edged veil: a 3x-tall gradient mask whose black cap slides down
+         over the block as the scrub advances, so the reveal edge is a
+         feathered band instead of a hard cut. Paint-only, so unlike the old
+         clip-path wipe it never kills hit-testing or intersection. */
+      -webkit-mask-image: linear-gradient(to bottom, #000 0 48%, transparent 52% 100%);
+      mask-image: linear-gradient(to bottom, #000 0 48%, transparent 52% 100%);
+      -webkit-mask-size: 100% 300%;
+      mask-size: 100% 300%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: 0% 0%;
+      mask-position: 0% 0%;
+      animation: reveal-veil linear both;
+      /* Must come after the animation shorthand, which resets it to auto. */
+      animation-timeline: view(block);
+      /* The scrub happens inside the viewport: at cover 35% the block is
+         already entering the lower half of the viewport, and by cover 55%
+         the veil edge has crossed the block's bottom while it is still
+         visible. */
+      animation-range: cover 35% cover 55%;
+      /* Guard: if animation-timeline parses but never attaches, the 1ms
+         time-based fallback finishes drawn instead of freezing hidden.
+         Progress-based timelines ignore this duration. */
+      animation-duration: 1ms;
+    }
+
+    /* Cascade: even cards in a grid start a touch later, so rows reveal in
+       a left-to-right rhythm instead of wiping in unison. */
+    .reveal .feature-card:nth-child(2n),
+    .reveal .template-card:nth-child(2n),
+    .reveal .faq-item:nth-child(2n) {
+      animation-range: cover 38% cover 58%;
+    }
+  }
 }
 
-html.js .reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+@keyframes reveal-veil {
+  from {
+    -webkit-mask-position: 0% 100%;
+    mask-position: 0% 100%;
+  }
+
+  to {
+    -webkit-mask-position: 0% 0%;
+    mask-position: 0% 0%;
+  }
 }
 
-html.js .reveal.visible {
-  opacity: 1;
-  transform: none;
+/* Static, fully visible blocks when motion is reduced. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal .section-label,
+  .reveal .section-subtitle,
+  .reveal .feature-card,
+  .reveal .ai-card,
+  .reveal .ai-cta,
+  .reveal .template-card,
+  .reveal .project-card,
+  .reveal .faq-item,
+  .reveal .about-text,
+  .reveal .about-stats,
+  .reveal .cta-card,
+  .reveal .pricing-card {
+    animation: none;
+    -webkit-mask: none;
+    mask: none;
+  }
+}
+
+/* ============================================
+   THEME VIEW TRANSITION
+   ============================================
+   The Navbar wraps the data-theme swap in document.startViewTransition
+   when the browser supports it and motion is allowed. The root cross-fade
+   is timed here because document-level pseudo-elements are not reliably
+   targetable from scoped Astro component styles. */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.js .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }
 
